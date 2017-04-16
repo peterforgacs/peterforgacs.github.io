@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang=En>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="PreludeAltough its not officially supported you can use Windows 10 on AWS.The advantage of having a virtual machine on the cloud is that the G2 and P2 instances use GPU passtrough technology which mea">
+<meta name="keywords" content="AWS,S3,EC2,Virtualization">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2">
+<meta property="og:url" content="http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/index.html">
+<meta property="og:site_name" content="Peter Forgacs">
+<meta property="og:description" content="PreludeAltough its not officially supported you can use Windows 10 on AWS.The advantage of having a virtual machine on the cloud is that the G2 and P2 instances use GPU passtrough technology which mea">
+<meta property="og:updated_time" content="2017-04-14T20:33:03.152Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2">
+<meta name="twitter:description" content="PreludeAltough its not officially supported you can use Windows 10 on AWS.The advantage of having a virtual machine on the cloud is that the G2 and P2 instances use GPU passtrough technology which mea">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/peterforgacs">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/&text=How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/&title=How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/&is_video=false&description=How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2&body=Check out this article: http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/&title=How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/&title=How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/&title=How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/&title=How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/&name=How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Prelude"><span class="toc-number">1.</span> <span class="toc-text">Prelude</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Downloading-the-image"><span class="toc-number">2.</span> <span class="toc-text">Downloading the image</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Creating-the-virtual-machine"><span class="toc-number">3.</span> <span class="toc-text">Creating the virtual machine</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Install-and-configure-awscli"><span class="toc-number">4.</span> <span class="toc-text">Install and configure awscli</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Create-an-S3-bucket"><span class="toc-number">5.</span> <span class="toc-text">Create an S3 bucket</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Upload-image-to-s3"><span class="toc-number">6.</span> <span class="toc-text">Upload image to s3</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Configuration-files"><span class="toc-number">7.</span> <span class="toc-text">Configuration files</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Create-EC2-AMI-from-S3-VHD-image"><span class="toc-number">8.</span> <span class="toc-text">Create EC2 AMI from S3 VHD image</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Create-EC2-instance-from-AMI"><span class="toc-number">9.</span> <span class="toc-text">Create EC2 instance from AMI</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Running-the-instance"><span class="toc-number">10.</span> <span class="toc-text">Running the instance</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Post-Install"><span class="toc-number">11.</span> <span class="toc-text">Post Install</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Peter Forgacs</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-04-14T21:51:11.000Z" itemprop="datePublished">2017-04-14</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/AWS/">AWS</a>, <a class="tag-link" href="/tags/EC2/">EC2</a>, <a class="tag-link" href="/tags/S3/">S3</a>, <a class="tag-link" href="/tags/Virtualization/">Virtualization</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="Prelude"><a href="#Prelude" class="headerlink" title="Prelude"></a>Prelude</h1><p>Altough its not officially supported you can use Windows 10 on AWS.<br>The advantage of having a virtual machine on the cloud is that the G2 and P2 instances use GPU passtrough technology which means you can use graphics cards, install and run graphics intensive programs easily on a virtual machine.</p>
+<p>One limitation is that it wont work trough Microsoft Remote Desktop only trough Teamviewer or similar screensharing applications.</p>
+<h1 id="Downloading-the-image"><a href="#Downloading-the-image" class="headerlink" title="Downloading the image"></a>Downloading the image</h1><p>There are limitations which version you can use on aws.<br>AWS vmimport supported versions:<br>Microsoft Windows 10 (Professional, Enterprise, Education) (US English) (64-bit only).<br>So Home version wont work.<br>Download the windows image you want.</p>
+<p>You can download the Enterprise trial <a href="https://www.microsoft.com/en-us/evalcenter/evaluate-windows-10-enterprise" target="_blank" rel="external">here</a>.</p>
+<h1 id="Creating-the-virtual-machine"><a href="#Creating-the-virtual-machine" class="headerlink" title="Creating the virtual machine"></a>Creating the virtual machine</h1><ul>
+<li>Use virtualbox to create a new virtual machine, make sure that it uses the VHD format (The OS is 20 gigabyte).</li>
+<li>Install the Windows 10 image onto it.</li>
+<li>Make sure to set a username password on the administrator account otherwise cannot connect trough remote desktop later on.</li>
+<li>Install teamviewer on the virtual machine grant easy access to yourself and check extras-&gt;options<ul>
+<li>General -&gt; Network Settings: Accept Incoming Lan Connections</li>
+<li>Security -&gt; Windows logon: Allowed for all users</li>
+</ul>
+</li>
+<li>Start -&gt; Allow remote access to your computer<ul>
+<li>Allow remote connections to this computer</li>
+</ul>
+</li>
+<li>Install ec2 configure service following <a href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/UsingConfig_Install.html" target="_blank" rel="external">this</a>.</li>
+<li>Restart the virtual machine.</li>
+<li>Wait for windows 10 updates to install.</li>
+<li>Exit the virtual machine.</li>
+</ul>
+<h1 id="Install-and-configure-awscli"><a href="#Install-and-configure-awscli" class="headerlink" title="Install and configure awscli"></a>Install and configure awscli</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt install awscli</div><div class="line">aws configure</div></pre></td></tr></table></figure>
+<p>During configure you can add your:</p>
+<ul>
+<li>AWS access key.</li>
+<li>AWS secret access key.</li>
+<li>Default region.</li>
+</ul>
+<p>You can get your access key following <a href="http://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html" target="_blank" rel="external">this</a>.</p>
+<p>If you set a default region you dont have to specify the region parameter in the following commands.<br>But keep in mind that some instance types (P2) are only avalible in the US.</p>
+<h1 id="Create-an-S3-bucket"><a href="#Create-an-S3-bucket" class="headerlink" title="Create an S3 bucket"></a>Create an S3 bucket</h1><p>The bucketname must be unique.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">aws s3 mb s3://my-unique-bucket --region eu-central-1</div></pre></td></tr></table></figure>
+<h1 id="Upload-image-to-s3"><a href="#Upload-image-to-s3" class="headerlink" title="Upload image to s3"></a>Upload image to s3</h1><p>Move to the folder you store the virtual machine file and upload the virtual image to the s3 bucket.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">aws s3 cp myimage.vhd s3://my-unique-bucket --region eu-central-1</div></pre></td></tr></table></figure>
+<h1 id="Configuration-files"><a href="#Configuration-files" class="headerlink" title="Configuration files"></a>Configuration files</h1><p>Create a trust policy in the file trust-policy.json.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">   <span class="attr">"Version"</span>: <span class="string">"2012-10-17"</span>,</div><div class="line">   <span class="attr">"Statement"</span>: [</div><div class="line">      &#123;</div><div class="line">         <span class="attr">"Effect"</span>: <span class="string">"Allow"</span>,</div><div class="line">         <span class="attr">"Principal"</span>: &#123; <span class="attr">"Service"</span>: <span class="string">"vmie.amazonaws.com"</span> &#125;,</div><div class="line">         <span class="attr">"Action"</span>: <span class="string">"sts:AssumeRole"</span>,</div><div class="line">         <span class="attr">"Condition"</span>: &#123;</div><div class="line">            <span class="attr">"StringEquals"</span>:&#123;</div><div class="line">               <span class="attr">"sts:Externalid"</span>: <span class="string">"vmimport"</span></div><div class="line">            &#125;</div><div class="line">         &#125;</div><div class="line">      &#125;</div><div class="line">   ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Create a vmimport role and add vim import/export access to it.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">aws iam create-role --role-name vmimport --assume-role-policy-document file://trust-policy.json</div></pre></td></tr></table></figure>
+<p>Create a file named role-policy.json replace the !!REPLACEME!! to the bucketname you are using.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">   <span class="attr">"Version"</span>: <span class="string">"2012-10-17"</span>,</div><div class="line">   <span class="attr">"Statement"</span>: [</div><div class="line">      &#123;</div><div class="line">         <span class="attr">"Effect"</span>: <span class="string">"Allow"</span>,</div><div class="line">         <span class="attr">"Action"</span>: [</div><div class="line">            <span class="string">"s3:ListBucket"</span>,</div><div class="line">            <span class="string">"s3:GetBucketLocation"</span></div><div class="line">         ],</div><div class="line">         <span class="attr">"Resource"</span>: [</div><div class="line">            <span class="string">"arn:aws:s3:::!!REPLACEME!!"</span></div><div class="line">         ]</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">         <span class="attr">"Effect"</span>: <span class="string">"Allow"</span>,</div><div class="line">         <span class="attr">"Action"</span>: [</div><div class="line">            <span class="string">"s3:GetObject"</span></div><div class="line">         ],</div><div class="line">         <span class="attr">"Resource"</span>: [</div><div class="line">            <span class="string">"arn:aws:s3:::!!REPLACEME!!/*"</span></div><div class="line">         ]</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">         <span class="attr">"Effect"</span>: <span class="string">"Allow"</span>,</div><div class="line">         <span class="attr">"Action"</span>:[</div><div class="line">            <span class="string">"ec2:ModifySnapshotAttribute"</span>,</div><div class="line">            <span class="string">"ec2:CopySnapshot"</span>,</div><div class="line">            <span class="string">"ec2:RegisterImage"</span>,</div><div class="line">            <span class="string">"ec2:Describe*"</span></div><div class="line">         ],</div><div class="line">         <span class="attr">"Resource"</span>: <span class="string">"*"</span></div><div class="line">      &#125;</div><div class="line">   ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Add the policy to the vmimport role.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">aws iam put-role-policy --role-name vmimport --policy-name vmimport --policy-document file://role-policy.json</div></pre></td></tr></table></figure>
+<p>Create a configuration file on your computer called containers.json.<br>Replace my-unique-bucket and myimage.vhd with your bucket and image name.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&#123; <span class="attr">"Description"</span>: <span class="string">"Windows 10 Base Install"</span>, <span class="attr">"Format"</span>: <span class="string">"vhd"</span>, <span class="attr">"UserBucket"</span>: &#123; <span class="attr">"S3Bucket"</span>: <span class="string">"my-unique-bucket"</span>, <span class="attr">"S3Key"</span>: <span class="string">"myimage.vhd"</span> &#125; &#125;]</div></pre></td></tr></table></figure>
+<h1 id="Create-EC2-AMI-from-S3-VHD-image"><a href="#Create-EC2-AMI-from-S3-VHD-image" class="headerlink" title="Create EC2 AMI from S3 VHD image"></a>Create EC2 AMI from S3 VHD image</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">aws ec2 import-image --description <span class="string">"Windows 10"</span> --disk-containers file://containers.json --region eu-central-1</div></pre></td></tr></table></figure>
+<p>This may take a while you can check on the status of the import.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">aws ec2 describe-import-image-tasks --region eu-central-1</div></pre></td></tr></table></figure>
+<p>When the import status is completed you can head to the EC2 console and select the correct region.</p>
+<h1 id="Create-EC2-instance-from-AMI"><a href="#Create-EC2-instance-from-AMI" class="headerlink" title="Create EC2 instance from AMI"></a>Create EC2 instance from AMI</h1><p>Images -&gt; AMI -&gt; Right click -&gt; Launch</p>
+<ul>
+<li>Instance type: g2 (You might have to ask the support for an increase in the g2 limit).</li>
+<li>Security Group: Allow RDP, Teamviewer ports.</li>
+</ul>
+<p>Instances -&gt; Launch</p>
+<h1 id="Running-the-instance"><a href="#Running-the-instance" class="headerlink" title="Running the instance"></a>Running the instance</h1><p>Instances -&gt; Right click -&gt; Connect</p>
+<p>You download the remote desktop file.</p>
+<p>Launch that file with the username and password you set on the original instance.</p>
+<p>In the form:<br>.\Username<br>pass</p>
+<h1 id="Post-Install"><a href="#Post-Install" class="headerlink" title="Post Install"></a>Post Install</h1><p>Reassign teamviewer to the your teamviewer.<br>Download nvidia experience and install a driver.</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/peterforgacs">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Prelude"><span class="toc-number">1.</span> <span class="toc-text">Prelude</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Downloading-the-image"><span class="toc-number">2.</span> <span class="toc-text">Downloading the image</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Creating-the-virtual-machine"><span class="toc-number">3.</span> <span class="toc-text">Creating the virtual machine</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Install-and-configure-awscli"><span class="toc-number">4.</span> <span class="toc-text">Install and configure awscli</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Create-an-S3-bucket"><span class="toc-number">5.</span> <span class="toc-text">Create an S3 bucket</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Upload-image-to-s3"><span class="toc-number">6.</span> <span class="toc-text">Upload image to s3</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Configuration-files"><span class="toc-number">7.</span> <span class="toc-text">Configuration files</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Create-EC2-AMI-from-S3-VHD-image"><span class="toc-number">8.</span> <span class="toc-text">Create EC2 AMI from S3 VHD image</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Create-EC2-instance-from-AMI"><span class="toc-number">9.</span> <span class="toc-text">Create EC2 instance from AMI</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Running-the-instance"><span class="toc-number">10.</span> <span class="toc-text">Running the instance</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Post-Install"><span class="toc-number">11.</span> <span class="toc-text">Post Install</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/&text=How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/&title=How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/&is_video=false&description=How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2&body=Check out this article: http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/&title=How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/&title=How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/&title=How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/&title=How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/&name=How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 Peter Forgacs
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/peterforgacs">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+
