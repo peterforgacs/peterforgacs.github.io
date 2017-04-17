@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang=En>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Browser compatibilityWebRTC has a global ~62% compatibility rate in 2016.You can use it safely on most of the major desktop browsers. http://caniuse.com/#search=webrtc Parts of WebRTCWebRTC has 3 majo">
+<meta name="keywords" content="WebRTC,Stream">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How WebRTC Works">
+<meta property="og:url" content="http://yoursite.com/2017/04/17/How-WebRTC-works/index.html">
+<meta property="og:site_name" content="Peter Forgacs">
+<meta property="og:description" content="Browser compatibilityWebRTC has a global ~62% compatibility rate in 2016.You can use it safely on most of the major desktop browsers. http://caniuse.com/#search=webrtc Parts of WebRTCWebRTC has 3 majo">
+<meta property="og:updated_time" content="2017-04-17T19:40:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How WebRTC Works">
+<meta name="twitter:description" content="Browser compatibilityWebRTC has a global ~62% compatibility rate in 2016.You can use it safely on most of the major desktop browsers. http://caniuse.com/#search=webrtc Parts of WebRTCWebRTC has 3 majo">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>How WebRTC Works</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/peterforgacs">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/04/16/Bash-tips-and-tricks/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/04/17/How-WebRTC-works/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/04/17/How-WebRTC-works/&text=How WebRTC Works"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/04/17/How-WebRTC-works/&title=How WebRTC Works"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/04/17/How-WebRTC-works/&is_video=false&description=How WebRTC Works"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=How WebRTC Works&body=Check out this article: http://yoursite.com/2017/04/17/How-WebRTC-works/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/04/17/How-WebRTC-works/&title=How WebRTC Works"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/04/17/How-WebRTC-works/&title=How WebRTC Works"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/04/17/How-WebRTC-works/&title=How WebRTC Works"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/04/17/How-WebRTC-works/&title=How WebRTC Works"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/04/17/How-WebRTC-works/&name=How WebRTC Works&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Browser-compatibility"><span class="toc-number">1.</span> <span class="toc-text">Browser compatibility</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Parts-of-WebRTC"><span class="toc-number">2.</span> <span class="toc-text">Parts of WebRTC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Audio-amp-Video-engine"><span class="toc-number">3.</span> <span class="toc-text">Audio & Video engine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transport-Layer"><span class="toc-number">4.</span> <span class="toc-text">Transport Layer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Signaling-Server"><span class="toc-number">5.</span> <span class="toc-text">Signaling Server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Example-connection"><span class="toc-number">6.</span> <span class="toc-text">Example connection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebRTC-frameworks"><span class="toc-number">7.</span> <span class="toc-text">WebRTC frameworks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Articles"><span class="toc-number">8.</span> <span class="toc-text">Articles</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        How WebRTC Works
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Peter Forgacs</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-04-17T21:27:16.000Z" itemprop="datePublished">2017-04-17</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Stream/">Stream</a>, <a class="tag-link" href="/tags/WebRTC/">WebRTC</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Browser-compatibility"><a href="#Browser-compatibility" class="headerlink" title="Browser compatibility"></a>Browser compatibility</h2><p>WebRTC has a global ~62% compatibility rate in 2016.<br>You can use it safely on most of the major desktop browsers.</p>
+<p><a href="http://caniuse.com/#search=webrtc" target="_blank" rel="external">http://caniuse.com/#search=webrtc</a></p>
+<h2 id="Parts-of-WebRTC"><a href="#Parts-of-WebRTC" class="headerlink" title="Parts of WebRTC"></a>Parts of WebRTC</h2><p>WebRTC has 3 major parts built into the browser.</p>
+<ul>
+<li>Audio engine</li>
+<li>Video engine</li>
+<li>Transport layer</li>
+</ul>
+<h2 id="Audio-amp-Video-engine"><a href="#Audio-amp-Video-engine" class="headerlink" title="Audio &amp; Video engine"></a>Audio &amp; Video engine</h2><p>You can access the media stream trough the getUserMedia API.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">navigator.getUserMedia(&#123;<span class="attr">video</span>:<span class="literal">true</span>, <span class="attr">audio</span>:<span class="literal">false</span>&#125;, </div><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">stream</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> video = <span class="built_in">document</span>.querySelector(<span class="string">'video'</span>);</div><div class="line">	video.src = <span class="built_in">window</span>.URL.createObjectUrl(stream);</div><div class="line">&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>)</span>&#123;&#125;);</div></pre></td></tr></table></figure>
+<p>This asks for permission  to use the webcam or microphone according to the given constraints.</p>
+<p>The media stream is represented as a Blob object in Javascript ( immutable objects that represent raw data ). The createObjectUrl method creates a DOM String that represents the media stream for the current session and can be used as source on video elements.</p>
+<h2 id="Transport-Layer"><a href="#Transport-Layer" class="headerlink" title="Transport Layer"></a>Transport Layer</h2><p>The transportation layer can be used trough the RTCPeerConnection object.<br>The job of the RTCPeerConnection object is to maintain the session and state of a peer connection in the browser. It also handles the setup and creation of a peer connection.</p>
+<p>To connect people you also need a signaling server which is not defined in the WebRTC standard.</p>
+<h2 id="Signaling-Server"><a href="#Signaling-Server" class="headerlink" title="Signaling Server"></a>Signaling Server</h2><p>Most of the time WebSockets is used for the signaling server.<br>For production some people advise to use socket.io (<a href="http://socket.io/" target="_blank" rel="external">http://socket.io/</a>) which is built on top of WebSockets.<br>You can also use traditional frameworks like XMMP.</p>
+<h2 id="Example-connection"><a href="#Example-connection" class="headerlink" title="Example connection"></a>Example connection</h2><p>A connection between user1 and user2:</p>
+<ul>
+<li>user1 calls CreateOffer()  </li>
+<li>user1 sets local session description </li>
+<li>user1 sends its session description to user2 trough the signaling server </li>
+<li>user1 sends its Ice candidate to user2 </li>
+<li>user2 sets the incoming session description from user1 as remote session description </li>
+<li>user2 calls createAnswer() and passing user1 session description </li>
+<li>user2 also send its local session description to user1 </li>
+<li>user1 sets its remote session description what he got from user2 </li>
+<li>user2 sends its Ice candidate to user1 </li>
+</ul>
+<p>A connection starts with an offer from one user.<br>This sends the sdp file to the server that gets sent to the offered user.<br>The sdp file contains information about media codecs etc. used by the offering party. These sdp files are exchanged so both client has his and the other clients sdp saved.</p>
+<p>To finalize the the peer to peer connection you also need to use the ICE framework ( built into the browser ) that uses either STUN or TURN protocols to figure out the correct local / remote IP of  the peers. Depending on the users network configuration ICE either uses STUN or TURN.</p>
+<p>During the setup of the RTCPeerConnection object you can specify a STUN or TURN server that is mainly used to get the outside IP of the client.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> configuration = &#123;</div><div class="line">    <span class="string">"iceServers"</span>: [&#123; <span class="string">"url"</span>: <span class="string">"stun:stun.1.google.com:19302"</span> &#125;]</div><div class="line">  &#125;;</div><div class="line">yourConnection = <span class="keyword">new</span> RTCPeerConnection(configuration);</div></pre></td></tr></table></figure>
+<p>After the peer connection has been established we can use the other peers media stream the same way as the local stream.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">yourConnection.addStream(stream);</div><div class="line">  yourConnection.onaddstream = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">    theirVideo.src = <span class="built_in">window</span>.URL.createObjectURL(e.stream);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="WebRTC-frameworks"><a href="#WebRTC-frameworks" class="headerlink" title="WebRTC frameworks"></a>WebRTC frameworks</h2><ul>
+<li><a href="https://tokbox.com/" target="_blank" rel="external">tokbox</a></li>
+<li><a href="https://github.com/priologic/easyrtc" target="_blank" rel="external">easyrtc</a></li>
+<li><a href="https://github.com/andyet/SimpleWebRTC" target="_blank" rel="external">simpleWebRTC</a></li>
+</ul>
+<h2 id="Articles"><a href="#Articles" class="headerlink" title="Articles"></a>Articles</h2><ul>
+<li><a href="https://bloggeek.me/siganling-protocol-webrtc/" target="_blank" rel="external">https://bloggeek.me/siganling-protocol-webrtc/</a></li>
+</ul>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/peterforgacs">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Browser-compatibility"><span class="toc-number">1.</span> <span class="toc-text">Browser compatibility</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Parts-of-WebRTC"><span class="toc-number">2.</span> <span class="toc-text">Parts of WebRTC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Audio-amp-Video-engine"><span class="toc-number">3.</span> <span class="toc-text">Audio & Video engine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transport-Layer"><span class="toc-number">4.</span> <span class="toc-text">Transport Layer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Signaling-Server"><span class="toc-number">5.</span> <span class="toc-text">Signaling Server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Example-connection"><span class="toc-number">6.</span> <span class="toc-text">Example connection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebRTC-frameworks"><span class="toc-number">7.</span> <span class="toc-text">WebRTC frameworks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Articles"><span class="toc-number">8.</span> <span class="toc-text">Articles</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/04/17/How-WebRTC-works/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/04/17/How-WebRTC-works/&text=How WebRTC Works"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/04/17/How-WebRTC-works/&title=How WebRTC Works"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/04/17/How-WebRTC-works/&is_video=false&description=How WebRTC Works"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=How WebRTC Works&body=Check out this article: http://yoursite.com/2017/04/17/How-WebRTC-works/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/04/17/How-WebRTC-works/&title=How WebRTC Works"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/04/17/How-WebRTC-works/&title=How WebRTC Works"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/04/17/How-WebRTC-works/&title=How WebRTC Works"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/04/17/How-WebRTC-works/&title=How WebRTC Works"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/04/17/How-WebRTC-works/&name=How WebRTC Works&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 Peter Forgacs
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/peterforgacs">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-97407927-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'peterforgacs-github-io';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
