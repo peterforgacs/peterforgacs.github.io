@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/16/Bash-tips-and-tricks/index.html">
 <meta property="og:site_name" content="Peter Forgacs">
 <meta property="og:description" content="There are loads of tutorials on bash. This does not aim to be a reference guide instead aims to show some lesser known commands that can be super powerful if used right. Brace expansionWith the {} sym">
-<meta property="og:updated_time" content="2017-04-16T19:51:48.000Z">
+<meta property="og:updated_time" content="2017-04-17T19:46:47.447Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bash Tips and Tricks">
 <meta name="twitter:description" content="There are loads of tutorials on bash. This does not aim to be a reference guide instead aims to show some lesser known commands that can be super powerful if used right. Brace expansionWith the {} sym">
@@ -151,7 +151,9 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~</div><div class="line"><span class="built_in">cd</span> dir1</div><div class="line"><span class="built_in">cd</span> - <span class="comment"># ~</span></div><div class="line"><span class="built_in">cd</span> - <span class="comment"># dir1</span></div></pre></td></tr></table></figure>
 <p>The - basically replaces the $OLDPWD environment variable.</p>
 <h2 id="logger"><a href="#logger" class="headerlink" title="logger"></a>logger</h2><p>You can send messages straight to the syslog.<br>If you want to debug a script which gets run from cron you can simply use logger to print a message.</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">logger <span class="string">'myscript.sh'</span> <span class="string">'im a new message'</span> -i</div><div class="line"></div><div class="line">This creates an entry <span class="keyword">in</span> /var/<span class="built_in">log</span>/syslog on Ubuntu.</div><div class="line">You can check it.</div><div class="line"></div><div class="line">tail /var/<span class="built_in">log</span>/syslog</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">logger <span class="string">'myscript.sh'</span> <span class="string">'im a new message'</span> -i</div></pre></td></tr></table></figure>
+<p>This creates an entry in /var/log/syslog on Ubuntu.<br>You can check it with the following command.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tail /var/<span class="built_in">log</span>/syslog</div></pre></td></tr></table></figure>
 <p>You can add priority with the -p flag.<br>If you set the priority to 0 a message gets broadcasted.</p>
 <p>You can find more info about logger here: man 1 logger</p>
 <h2 id="file"><a href="#file" class="headerlink" title="file"></a>file</h2><p>You can get the type of a file with the file command.</p>
