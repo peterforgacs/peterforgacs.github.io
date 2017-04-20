@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/18/Docker-basics/index.html">
 <meta property="og:site_name" content="Peter Forgacs">
 <meta property="og:description" content="There are images and containers.Images are pretty much like a virtual computer image.Containers are running images.  ImagesYou can download prebuilt images from Docker Hub that contains some OS and so">
-<meta property="og:updated_time" content="2017-04-18T14:57:37.211Z">
+<meta property="og:updated_time" content="2017-04-20T20:11:22.397Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker Basics">
 <meta name="twitter:description" content="There are images and containers.Images are pretty much like a virtual computer image.Containers are running images.  ImagesYou can download prebuilt images from Docker Hub that contains some OS and so">
@@ -96,7 +96,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Images"><span class="toc-number">1.</span> <span class="toc-text">Images</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Containers"><span class="toc-number">2.</span> <span class="toc-text">Containers</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Images"><span class="toc-number">1.</span> <span class="toc-text">Images</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dockerfiles"><span class="toc-number">2.</span> <span class="toc-text">Dockerfiles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Containers"><span class="toc-number">3.</span> <span class="toc-text">Containers</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -145,6 +145,10 @@
 <p>You can remove an image:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker rmi &lt;id&gt;</div></pre></td></tr></table></figure>
 <p>If you delete it gets deleted from your computer.<br>You cant delete an image if you have a running container that uses it.</p>
+<h2 id="Dockerfiles"><a href="#Dockerfiles" class="headerlink" title="Dockerfiles"></a>Dockerfiles</h2><p>A dockerfile is a file that describes an Image.<br>A docker file can be built on top of an existing image.<br>In this way you can tweak and add additional functionality to an existing Image.</p>
+<p>You can create an image from a Dockerfile with the build command:</p>
+<p>If you specify a name its easier to reference during the container creation.<br>If you dont set a name you can reference an image by id or the auto generated name.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker build -t &lt;image-name&gt; &lt;path-to-dockerfile&gt;</div></pre></td></tr></table></figure>
 <h2 id="Containers"><a href="#Containers" class="headerlink" title="Containers"></a>Containers</h2><p>Containers are instantiated images.<br>Containers can be either running or stopped. </p>
 <p>You can run a container from an image: </p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run –it &lt;username/image&gt;</div></pre></td></tr></table></figure>
@@ -156,7 +160,10 @@
 <p>You can stop a container </p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Docker stop &lt;name&gt;</div></pre></td></tr></table></figure>
 <p>You can start or restart a container: </p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker start &lt;name&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker start &lt;name&gt; </div><div class="line">docker restart &lt;name&gt;</div></pre></td></tr></table></figure>
+<p>You can check the output of the docker container:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># snapshot</span></div><div class="line">docker logs &lt;name&gt;</div><div class="line"><span class="comment"># follow or -f</span></div><div class="line">docker logs &lt;name&gt; --follow</div></pre></td></tr></table></figure>
+
   </div>
 </article>
 
@@ -188,7 +195,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Images"><span class="toc-number">1.</span> <span class="toc-text">Images</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Containers"><span class="toc-number">2.</span> <span class="toc-text">Containers</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Images"><span class="toc-number">1.</span> <span class="toc-text">Images</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dockerfiles"><span class="toc-number">2.</span> <span class="toc-text">Dockerfiles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Containers"><span class="toc-number">3.</span> <span class="toc-text">Containers</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
