@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="IntroductionDocker has loads of commands, im not aiming to cover all of them instead to provide a narrative that makes it easier to get up to speed with docker. There are images and containers.Images">
+    <meta name="description" content="IntroductionDocker has loads of commands, im not aiming to cover all of them instead to provide a narrative that makes it easier to get up to speed with docker.  There are images and containers. Image">
 <meta name="keywords" content="Docker,Virtualization">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker Basics">
 <meta property="og:url" content="http://yoursite.com/2017/04/18/Docker-basics/index.html">
 <meta property="og:site_name" content="Peter Forgacs">
-<meta property="og:description" content="IntroductionDocker has loads of commands, im not aiming to cover all of them instead to provide a narrative that makes it easier to get up to speed with docker. There are images and containers.Images">
-<meta property="og:updated_time" content="2017-04-21T20:56:25.000Z">
+<meta property="og:description" content="IntroductionDocker has loads of commands, im not aiming to cover all of them instead to provide a narrative that makes it easier to get up to speed with docker.  There are images and containers. Image">
+<meta property="og:updated_time" content="2017-04-21T21:01:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker Basics">
-<meta name="twitter:description" content="IntroductionDocker has loads of commands, im not aiming to cover all of them instead to provide a narrative that makes it easier to get up to speed with docker. There are images and containers.Images">
+<meta name="twitter:description" content="IntroductionDocker has loads of commands, im not aiming to cover all of them instead to provide a narrative that makes it easier to get up to speed with docker.  There are images and containers. Image">
     
     
         
@@ -136,21 +136,25 @@
 
   <div class="content" itemprop="articleBody">
     <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Docker has loads of commands, im not aiming to cover all of them instead to provide a narrative that makes it easier to get up to speed with docker.</p>
-<p>There are images and containers.<br><br>Images are pretty much like a virtual computer image.<br><br>Containers are running images. </p>
+<ul>
+<li>There are images and containers.</li>
+<li>Images are pretty much like a virtual computer image.</li>
+<li>Containers are running images. </li>
+</ul>
 <h2 id="Images"><a href="#Images" class="headerlink" title="Images"></a>Images</h2><p>You can download prebuilt images from <a href="https://hub.docker.com/" target="_blank" rel="external">Docker Hub</a> that contains some OS and some programs installed onto it. </p>
 <p>First you have to download an image.<br>You can do this with the pull command. </p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">docker pull &lt;dockerhub user&gt;/&lt;image&gt;</div><div class="line"><span class="comment"># Example</span></div><div class="line">docker pull crossbario/crossbar</div></pre></td></tr></table></figure>
 <p>This downloads the crossbar latest image onto your computer.<br>The location of the images is in /var/lib/docker but there is some magic involved. </p>
-<p>The images are stored in /var/lib/docker/graph/<id>/layer. <br><br>Note that images are just diffs from the parent image. The parent ID is stored with the image’s metadata /var/lib/docker/graph/<id>/json.<br>When you docker run an image. AUFS will ‘merge’ all layers into one usable file system. </id></id></p>
+<p>The images are stored in /var/lib/docker/graph/<id>/layer. <br><br>Note that images are just diffs from the parent image. The parent ID is stored with the image’s metadata /var/lib/docker/graph/<id>/json.When you docker run an image. AUFS will ‘merge’ all layers into one usable file system. </id></id></p>
 <p>You can check all your downloaded images:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker images</div></pre></td></tr></table></figure></p>
 <p>You can remove an image:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker rmi &lt;id&gt;</div></pre></td></tr></table></figure>
 <p>If you delete it gets deleted from your computer.<br>You cant delete an image if you have a running container that uses it.</p>
-<h2 id="Dockerfiles"><a href="#Dockerfiles" class="headerlink" title="Dockerfiles"></a>Dockerfiles</h2><p>A dockerfile is a file that describes an Image.<br><br>A docker file can be built on top of an existing image.<br><br>In this way you can tweak and add additional functionality to an existing Image.</p>
+<h2 id="Dockerfiles"><a href="#Dockerfiles" class="headerlink" title="Dockerfiles"></a>Dockerfiles</h2><p>A dockerfile is a file that describes an Image.<br>A docker file can be built on top of an existing image.<br>In this way you can tweak and add additional functionality to an existing Image.</p>
 <p>You can create an image from a Dockerfile with the build command:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker build -t &lt;image-name&gt; &lt;path-to-dockerfile&gt;</div></pre></td></tr></table></figure>
 <p>If you specify a name its easier to reference during the container creation.<br>If you dont set a name you can reference an image by id or the auto generated name.</p>
-<p>Dockerfiles has their own syntax but its mostly bash commands with some directive commands.<br>The most important command is the ENTRYPOINT which gets run each time when the container starts.</p>
+<p>Dockerfiles has their own syntax but its mostly bash commands with some directive commands.The most important command is the ENTRYPOINT which gets run each time when the container starts.</p>
 <h2 id="Containers"><a href="#Containers" class="headerlink" title="Containers"></a>Containers</h2><p>Containers are instantiated images.<br><br>Containers are either running or stopped. </p>
 <p>You can list you running containers: </p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker ps</div></pre></td></tr></table></figure>
@@ -173,7 +177,7 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -it &lt;image&gt;</div></pre></td></tr></table></figure>
 <p>To detach from a running container use the -d flag.</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run <span class="_">-d</span> &lt;image&gt;</div></pre></td></tr></table></figure>
-<p>To delete the container after we stop it (Useful when creating and debugging images ) use the –rm flag.</p>
+<p>To delete the container after we stop it (Useful when creating and debugging images) use the –rm flag:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">docker run -it --rm &lt;image&gt; </div><div class="line">``` </div><div class="line"></div><div class="line">You can <span class="built_in">set</span> a restart policy <span class="keyword">for</span> the container with --restart:</div><div class="line"></div><div class="line">```sh</div><div class="line"><span class="comment"># Dont let the container to stop</span></div><div class="line">docker run --restart=always &lt;image&gt;</div></pre></td></tr></table></figure>
 <h2 id="Settings-with-docker-run"><a href="#Settings-with-docker-run" class="headerlink" title="Settings with docker run"></a>Settings with docker run</h2><p>These can be set either from the Dockerfile or from directly the docker run command.</p>
 <p>To open a port on container use the –expose or -e flag:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Expose the port 1337 on the container</span></div><div class="line">docker run -it <span class="_">-e</span> 1337 &lt;image&gt;</div></pre></td></tr></table></figure></p>
