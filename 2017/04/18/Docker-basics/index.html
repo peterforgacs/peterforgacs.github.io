@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="There are images and containers.Images are pretty much like a virtual computer image.Containers are running images.  ImagesYou can download prebuilt images from Docker Hub that contains some OS and so">
+    <meta name="description" content="IntroductionDocker has loads of commands, im not aiming to cover all of them instead to provide a narrative that makes it easier to get up to speed with docker. There are images and containers.Images">
 <meta name="keywords" content="Docker,Virtualization">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker Basics">
 <meta property="og:url" content="http://yoursite.com/2017/04/18/Docker-basics/index.html">
 <meta property="og:site_name" content="Peter Forgacs">
-<meta property="og:description" content="There are images and containers.Images are pretty much like a virtual computer image.Containers are running images.  ImagesYou can download prebuilt images from Docker Hub that contains some OS and so">
-<meta property="og:updated_time" content="2017-04-20T20:11:22.397Z">
+<meta property="og:description" content="IntroductionDocker has loads of commands, im not aiming to cover all of them instead to provide a narrative that makes it easier to get up to speed with docker. There are images and containers.Images">
+<meta property="og:updated_time" content="2017-04-21T20:56:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker Basics">
-<meta name="twitter:description" content="There are images and containers.Images are pretty much like a virtual computer image.Containers are running images.  ImagesYou can download prebuilt images from Docker Hub that contains some OS and so">
+<meta name="twitter:description" content="IntroductionDocker has loads of commands, im not aiming to cover all of them instead to provide a narrative that makes it easier to get up to speed with docker. There are images and containers.Images">
     
     
         
@@ -96,7 +96,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Images"><span class="toc-number">1.</span> <span class="toc-text">Images</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dockerfiles"><span class="toc-number">2.</span> <span class="toc-text">Dockerfiles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Containers"><span class="toc-number">3.</span> <span class="toc-text">Containers</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Images"><span class="toc-number">2.</span> <span class="toc-text">Images</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dockerfiles"><span class="toc-number">3.</span> <span class="toc-text">Dockerfiles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Containers"><span class="toc-number">4.</span> <span class="toc-text">Containers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Containers-from-Images-docker-run"><span class="toc-number">5.</span> <span class="toc-text">Containers from Images - docker run</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Settings-with-docker-run"><span class="toc-number">6.</span> <span class="toc-text">Settings with docker run</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stepping-into-a-Container-docker-exec"><span class="toc-number">7.</span> <span class="toc-text">Stepping into a Container - docker exec</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Multiple-Container-docker-compose"><span class="toc-number">8.</span> <span class="toc-text">Multiple Container - docker compose</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Remote-hosts-docker-machine"><span class="toc-number">9.</span> <span class="toc-text">Remote hosts - docker machine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Multiple-Hosts-docker-swarm"><span class="toc-number">10.</span> <span class="toc-text">Multiple Hosts - docker swarm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Workflow-Using-an-existing-image"><span class="toc-number">11.</span> <span class="toc-text">Workflow - Using an existing image</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Workflow-Dockerizing-your-app"><span class="toc-number">12.</span> <span class="toc-text">Workflow - Dockerizing your app</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -135,34 +135,75 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>There are images and containers.<br>Images are pretty much like a virtual computer image.<br>Containers are running images. </p>
+    <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Docker has loads of commands, im not aiming to cover all of them instead to provide a narrative that makes it easier to get up to speed with docker.</p>
+<p>There are images and containers.<br><br>Images are pretty much like a virtual computer image.<br><br>Containers are running images. </p>
 <h2 id="Images"><a href="#Images" class="headerlink" title="Images"></a>Images</h2><p>You can download prebuilt images from <a href="https://hub.docker.com/" target="_blank" rel="external">Docker Hub</a> that contains some OS and some programs installed onto it. </p>
 <p>First you have to download an image.<br>You can do this with the pull command. </p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull crossbario/crossbar</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">docker pull &lt;dockerhub user&gt;/&lt;image&gt;</div><div class="line"><span class="comment"># Example</span></div><div class="line">docker pull crossbario/crossbar</div></pre></td></tr></table></figure>
 <p>This downloads the crossbar latest image onto your computer.<br>The location of the images is in /var/lib/docker but there is some magic involved. </p>
-<p>The images are stored in /var/lib/docker/graph/<id>/layer.<br>Note that images are just diffs from the parent image. The parent ID is stored with the image’s metadata /var/lib/docker/graph/<id>/json.<br>When you docker run an image. AUFS will ‘merge’ all layers into one usable file system. </id></id></p>
-<p>You can check all your images:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker images</div></pre></td></tr></table></figure></p>
+<p>The images are stored in /var/lib/docker/graph/<id>/layer. <br><br>Note that images are just diffs from the parent image. The parent ID is stored with the image’s metadata /var/lib/docker/graph/<id>/json.<br>When you docker run an image. AUFS will ‘merge’ all layers into one usable file system. </id></id></p>
+<p>You can check all your downloaded images:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker images</div></pre></td></tr></table></figure></p>
 <p>You can remove an image:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker rmi &lt;id&gt;</div></pre></td></tr></table></figure>
 <p>If you delete it gets deleted from your computer.<br>You cant delete an image if you have a running container that uses it.</p>
-<h2 id="Dockerfiles"><a href="#Dockerfiles" class="headerlink" title="Dockerfiles"></a>Dockerfiles</h2><p>A dockerfile is a file that describes an Image.<br>A docker file can be built on top of an existing image.<br>In this way you can tweak and add additional functionality to an existing Image.</p>
+<h2 id="Dockerfiles"><a href="#Dockerfiles" class="headerlink" title="Dockerfiles"></a>Dockerfiles</h2><p>A dockerfile is a file that describes an Image.<br><br>A docker file can be built on top of an existing image.<br><br>In this way you can tweak and add additional functionality to an existing Image.</p>
 <p>You can create an image from a Dockerfile with the build command:</p>
-<p>If you specify a name its easier to reference during the container creation.<br>If you dont set a name you can reference an image by id or the auto generated name.</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker build -t &lt;image-name&gt; &lt;path-to-dockerfile&gt;</div></pre></td></tr></table></figure>
-<h2 id="Containers"><a href="#Containers" class="headerlink" title="Containers"></a>Containers</h2><p>Containers are instantiated images.<br>Containers can be either running or stopped. </p>
-<p>You can run a container from an image: </p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run –it &lt;username/image&gt;</div></pre></td></tr></table></figure>
-<p>This starts up a virtual machine based on the image. </p>
+<p>If you specify a name its easier to reference during the container creation.<br>If you dont set a name you can reference an image by id or the auto generated name.</p>
+<p>Dockerfiles has their own syntax but its mostly bash commands with some directive commands.<br>The most important command is the ENTRYPOINT which gets run each time when the container starts.</p>
+<h2 id="Containers"><a href="#Containers" class="headerlink" title="Containers"></a>Containers</h2><p>Containers are instantiated images.<br><br>Containers are either running or stopped. </p>
 <p>You can list you running containers: </p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker ps</div></pre></td></tr></table></figure>
 <p>You can list all your containers, this shows stopped containers too:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker ps –a</div></pre></td></tr></table></figure>
-<p>You can stop a container </p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Docker stop &lt;name&gt;</div></pre></td></tr></table></figure>
+<p>You can stop a container:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker stop &lt;name&gt;</div></pre></td></tr></table></figure>
 <p>You can start or restart a container: </p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker start &lt;name&gt; </div><div class="line">docker restart &lt;name&gt;</div></pre></td></tr></table></figure>
 <p>You can check the output of the docker container:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># snapshot</span></div><div class="line">docker logs &lt;name&gt;</div><div class="line"><span class="comment"># follow or -f</span></div><div class="line">docker logs &lt;name&gt; --follow</div></pre></td></tr></table></figure>
+<h2 id="Containers-from-Images-docker-run"><a href="#Containers-from-Images-docker-run" class="headerlink" title="Containers from Images - docker run"></a>Containers from Images - docker run</h2><p>Docker run is basically a combination of two commands.<br>Docker create and docker start.</p>
+<p>So if you call run on an image it first creates a container from that image then starts that container.</p>
+<p>You can run a container from an image: </p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run &lt;dockerhub username&gt;/&lt;image&gt;</div></pre></td></tr></table></figure>
+<p>This downloads the image if its not present on the computer then start up a virtual machine based on the image.</p>
+<p>If you already have the image stored on your computer you can reference it by its name or id:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run &lt;image&gt;</div></pre></td></tr></table></figure>
+<p>To see the output of the running container you have to specify the -i -t flags:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -it &lt;image&gt;</div></pre></td></tr></table></figure>
+<p>To detach from a running container use the -d flag.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run <span class="_">-d</span> &lt;image&gt;</div></pre></td></tr></table></figure>
+<p>To delete the container after we stop it (Useful when creating and debugging images ) use the –rm flag.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">docker run -it --rm &lt;image&gt; </div><div class="line">``` </div><div class="line"></div><div class="line">You can <span class="built_in">set</span> a restart policy <span class="keyword">for</span> the container with --restart:</div><div class="line"></div><div class="line">```sh</div><div class="line"><span class="comment"># Dont let the container to stop</span></div><div class="line">docker run --restart=always &lt;image&gt;</div></pre></td></tr></table></figure>
+<h2 id="Settings-with-docker-run"><a href="#Settings-with-docker-run" class="headerlink" title="Settings with docker run"></a>Settings with docker run</h2><p>These can be set either from the Dockerfile or from directly the docker run command.</p>
+<p>To open a port on container use the –expose or -e flag:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Expose the port 1337 on the container</span></div><div class="line">docker run -it <span class="_">-e</span> 1337 &lt;image&gt;</div></pre></td></tr></table></figure></p>
+<p>If a port is exposed it does not mean its mapped to the host.<br><br>You can map an exposed port on the container to a host port with the -p flag.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">docker run <span class="_">-e</span> &lt;container port&gt; -p &lt;host port&gt;:&lt;container port&gt; &lt;image&gt;</div><div class="line"><span class="comment"># The host 4444 port is mapped to the containers 1337 port.</span></div><div class="line">docker run -it <span class="_">-e</span> 1337 -p 4444:1337 &lt;image&gt;</div></pre></td></tr></table></figure>
+<p>You can map folders on the host into the container with –volume or -v:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run --volume &lt;path to host folder&gt;:&lt;path to container folder&gt; &lt;image&gt;</div></pre></td></tr></table></figure>
+<h2 id="Stepping-into-a-Container-docker-exec"><a href="#Stepping-into-a-Container-docker-exec" class="headerlink" title="Stepping into a Container - docker exec"></a>Stepping into a Container - docker exec</h2><p>You can do multiple things with exec, run commands from the host in the container but  the coolest one is when you enter the containers shell.</p>
+<p>You can “step into” the container shell by specifying the shell in the container.<br><br>Note that all containers should have sh but some of them has /bin/bash as well. This depends on the image you are using.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">docker <span class="built_in">exec</span> &lt;container name&gt; sh</div><div class="line"><span class="comment"># Or</span></div><div class="line">docker <span class="built_in">exec</span> &lt;container name&gt; /bin/bash</div></pre></td></tr></table></figure>
+<h2 id="Multiple-Container-docker-compose"><a href="#Multiple-Container-docker-compose" class="headerlink" title="Multiple Container - docker compose"></a>Multiple Container - docker compose</h2><p>If you have multiple images and containers you want to manage together you can use docker compose to do that.</p>
+<p>In a docker-compose.yml file you specify the path to each containers Dockerfile and the settings you want to start with.</p>
+<p>Then you start or stop all containers with a single command:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker compose up</div><div class="line">docker compose down</div></pre></td></tr></table></figure>
+<h2 id="Remote-hosts-docker-machine"><a href="#Remote-hosts-docker-machine" class="headerlink" title="Remote hosts - docker machine"></a>Remote hosts - docker machine</h2><p>With docker machine you can mount a remote computer and manage the containers running remotely just like you would on your local computer. With the combination of docker compose and docker machine you can control microservices on a remote host like AWS from your local terminal.</p>
+<h2 id="Multiple-Hosts-docker-swarm"><a href="#Multiple-Hosts-docker-swarm" class="headerlink" title="Multiple Hosts - docker swarm"></a>Multiple Hosts - docker swarm</h2><p> It turns a pool of Docker hosts into a single, virtual host using an API proxy system. It has load balancing capabilities as well.</p>
+<h2 id="Workflow-Using-an-existing-image"><a href="#Workflow-Using-an-existing-image" class="headerlink" title="Workflow - Using an existing image"></a>Workflow - Using an existing image</h2><ul>
+<li>Download the image</li>
+<li>Run the image</li>
+</ul>
+<h2 id="Workflow-Dockerizing-your-app"><a href="#Workflow-Dockerizing-your-app" class="headerlink" title="Workflow - Dockerizing your app"></a>Workflow - Dockerizing your app</h2><ul>
+<li>First you create your app</li>
+<li>Find a docker image that has what you need</li>
+<li>Create a Dockerfile that builds on that image</li>
+<li>Test your container (ideally with docker run –rm)</li>
+<li>Create a Dockerfile for each of your services.</li>
+<li>Create a docker compose file</li>
+<li>Mount your remote machine with docker machine</li>
+<li>Start / Stop your services with docker compose</li>
+</ul>
 
   </div>
 </article>
@@ -195,7 +236,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Images"><span class="toc-number">1.</span> <span class="toc-text">Images</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dockerfiles"><span class="toc-number">2.</span> <span class="toc-text">Dockerfiles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Containers"><span class="toc-number">3.</span> <span class="toc-text">Containers</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Images"><span class="toc-number">2.</span> <span class="toc-text">Images</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dockerfiles"><span class="toc-number">3.</span> <span class="toc-text">Dockerfiles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Containers"><span class="toc-number">4.</span> <span class="toc-text">Containers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Containers-from-Images-docker-run"><span class="toc-number">5.</span> <span class="toc-text">Containers from Images - docker run</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Settings-with-docker-run"><span class="toc-number">6.</span> <span class="toc-text">Settings with docker run</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stepping-into-a-Container-docker-exec"><span class="toc-number">7.</span> <span class="toc-text">Stepping into a Container - docker exec</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Multiple-Container-docker-compose"><span class="toc-number">8.</span> <span class="toc-text">Multiple Container - docker compose</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Remote-hosts-docker-machine"><span class="toc-number">9.</span> <span class="toc-text">Remote hosts - docker machine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Multiple-Hosts-docker-swarm"><span class="toc-number">10.</span> <span class="toc-text">Multiple Hosts - docker swarm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Workflow-Using-an-existing-image"><span class="toc-number">11.</span> <span class="toc-text">Workflow - Using an existing image</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Workflow-Dockerizing-your-app"><span class="toc-number">12.</span> <span class="toc-text">Workflow - Dockerizing your app</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
