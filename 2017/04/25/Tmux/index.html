@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang=En>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Tmux is one of the best tools you can use on a UNIX based system.It’s a beefed up version of screen, a terminal multiplexer. It’s mainly used trough ssh but i often use it locally as well. Install1sud">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tmux">
+<meta property="og:url" content="http://yoursite.com/2017/04/25/Tmux/index.html">
+<meta property="og:site_name" content="Peter Forgacs">
+<meta property="og:description" content="Tmux is one of the best tools you can use on a UNIX based system.It’s a beefed up version of screen, a terminal multiplexer. It’s mainly used trough ssh but i often use it locally as well. Install1sud">
+<meta property="og:image" content="http://yoursite.com/images/tmux.png">
+<meta property="og:updated_time" content="2017-04-25T19:43:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tmux">
+<meta name="twitter:description" content="Tmux is one of the best tools you can use on a UNIX based system.It’s a beefed up version of screen, a terminal multiplexer. It’s mainly used trough ssh but i often use it locally as well. Install1sud">
+<meta name="twitter:image" content="http://yoursite.com/images/tmux.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Tmux</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/peterforgacs">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/04/18/Docker-basics/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/04/25/Tmux/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/04/25/Tmux/&text=Tmux"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/04/25/Tmux/&title=Tmux"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/04/25/Tmux/&is_video=false&description=Tmux"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Tmux&body=Check out this article: http://yoursite.com/2017/04/25/Tmux/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/04/25/Tmux/&title=Tmux"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/04/25/Tmux/&title=Tmux"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/04/25/Tmux/&title=Tmux"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/04/25/Tmux/&title=Tmux"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/04/25/Tmux/&name=Tmux&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Install"><span class="toc-number">1.</span> <span class="toc-text">Install</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tweaking"><span class="toc-number">2.</span> <span class="toc-text">Tweaking</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Plugins"><span class="toc-number">2.1.</span> <span class="toc-text">Plugins</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Keybindings"><span class="toc-number">2.2.</span> <span class="toc-text">Keybindings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Copy-and-paste-in-mouse-mode"><span class="toc-number">2.3.</span> <span class="toc-text">Copy and paste in mouse mode</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Tmux
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Peter Forgacs</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-04-25T21:38:52.000Z" itemprop="datePublished">2017-04-25</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><img src="/images/tmux.png" alt=""><br>Tmux is one of the best tools you can use on a UNIX based system.<br>It’s a beefed up version of <a href="https://www.gnu.org/software/screen/manual/screen.html" target="_blank" rel="external">screen</a>, a terminal multiplexer.</p>
+<p>It’s mainly used trough ssh but i often use it locally as well.</p>
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt install tmux</div></pre></td></tr></table></figure>
+<h2 id="Tweaking"><a href="#Tweaking" class="headerlink" title="Tweaking"></a>Tweaking</h2><p>The basic tmux install can be configured an extended with plugins.<br>Some of the configuration is necessary to use tmux comfortably.</p>
+<p>I’m sharing my .tmux.conf file as template.<br>This uses a sane keybinding layout and various plugins and tweaks.<br>You can try this as your .tmux.conf file after backing up yours.<br>The configuration file is located in ~/.tmux.conf.<br>You can install the plugins after tmux attach with Command + Shift + i.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># scrollback size</span></div><div class="line"><span class="built_in">set</span> -g <span class="built_in">history</span>-limit 10000</div><div class="line"></div><div class="line"><span class="comment">################################</span></div><div class="line"><span class="comment"># Keybinds</span></div><div class="line"><span class="comment">###############################</span></div><div class="line"></div><div class="line"><span class="comment"># Changing ctrl b to ctrl a as the command button</span></div><div class="line">unbind C-b</div><div class="line"><span class="built_in">set</span> -g prefix C<span class="_">-a</span></div><div class="line"></div><div class="line"><span class="comment"># set first window to index 1 (not 0) to map more to the keyboard layout</span></div><div class="line"><span class="built_in">set</span> -g base-index 1</div><div class="line"><span class="built_in">set</span> -g pane-base-index 1</div><div class="line"></div><div class="line"><span class="comment"># pass through xterm keys</span></div><div class="line"><span class="built_in">set</span> -g xterm-keys on</div><div class="line"></div><div class="line"><span class="comment"># Keep your finger on ctrl, or don't, same result</span></div><div class="line"><span class="built_in">bind</span>-key C<span class="_">-d</span> detach-client</div><div class="line"><span class="built_in">bind</span>-key C-p paste-buffer</div><div class="line"></div><div class="line"><span class="comment"># Redraw the client (if interrupted by wall, etc)</span></div><div class="line"><span class="built_in">bind</span> R refresh-client</div><div class="line"></div><div class="line"><span class="comment"># reload tmux config with ctrl + a + r</span></div><div class="line"> unbind r</div><div class="line"> <span class="built_in">bind</span> r \</div><div class="line">     <span class="built_in">source</span>-file ~/.tmux.conf \;\</div><div class="line">         display <span class="string">'Reloaded tmux config.'</span></div><div class="line"></div><div class="line"><span class="comment"># Vertical splits with g or C-g</span></div><div class="line">unbind g </div><div class="line">unbind C-g</div><div class="line"><span class="built_in">bind</span>-key g split-window -h</div><div class="line"><span class="built_in">bind</span>-key C-g split-window -h</div><div class="line"></div><div class="line"><span class="comment"># Horizontal splits with v or C-h</span></div><div class="line">unbind h</div><div class="line">unbind C-h</div><div class="line"><span class="built_in">bind</span>-key h split-window</div><div class="line"><span class="built_in">bind</span>-key C-h split-window</div><div class="line"></div><div class="line"><span class="comment"># Ctrl + a + o rename window</span></div><div class="line"><span class="comment"># unbind o</span></div><div class="line"><span class="comment"># unbind C-o</span></div><div class="line"><span class="comment"># bind-key C-o rename-window</span></div><div class="line"></div><div class="line"><span class="comment"># Using the mouse to switch panes</span></div><div class="line"><span class="built_in">set</span> -g mouse-utf8 on</div><div class="line"><span class="built_in">set</span> -g mouse on</div><div class="line"></div><div class="line"><span class="comment"># Ctrl - t or t new window</span></div><div class="line">unbind t</div><div class="line">unbind C-t</div><div class="line"><span class="built_in">bind</span>-key t new-window</div><div class="line"><span class="built_in">bind</span>-key C-t new-window</div><div class="line"></div><div class="line"><span class="comment"># Ctrl - w or w to kill panes</span></div><div class="line">unbind w</div><div class="line">unbind C-w</div><div class="line"><span class="built_in">bind</span>-key w <span class="built_in">kill</span>-pane</div><div class="line"><span class="built_in">bind</span>-key C-w <span class="built_in">kill</span>-pane</div><div class="line"></div><div class="line"><span class="comment"># C + control q to kill session</span></div><div class="line">unbind q</div><div class="line">unbind C-q</div><div class="line"><span class="built_in">bind</span>-key q <span class="built_in">kill</span>-session</div><div class="line"><span class="built_in">bind</span>-key C-q <span class="built_in">kill</span>-session</div><div class="line"></div><div class="line"><span class="comment"># Switching panes with alt</span></div><div class="line"><span class="built_in">bind</span> -n M-Left select-pane -L</div><div class="line"><span class="built_in">bind</span> -n M-Right select-pane -R</div><div class="line"><span class="built_in">bind</span> -n M-Up select-pane -U</div><div class="line"><span class="built_in">bind</span> -n M-Down select-pane -D</div><div class="line"></div><div class="line"><span class="comment"># Ctrl + a + n : New session</span></div><div class="line">unbind n</div><div class="line">unbind C-n</div><div class="line"><span class="built_in">bind</span>-key n new-session</div><div class="line"><span class="built_in">bind</span>-key C-n new-session</div><div class="line"></div><div class="line"><span class="comment"># Ctrl + a + Pagedown : Next window</span></div><div class="line"><span class="comment">#unbind Pagedown</span></div><div class="line">unbind Pagedown</div><div class="line"><span class="built_in">bind</span>-key Pagedown next-window</div><div class="line"></div><div class="line"><span class="comment"># Ctrl + a + Pagup : Previous window</span></div><div class="line"><span class="comment">#unbind Pageup</span></div><div class="line">unbind Pageup</div><div class="line"><span class="built_in">bind</span>-key Pageup previous-window</div><div class="line"></div><div class="line"><span class="comment"># Zoom with ctrl + a + ctrl + '+'</span></div><div class="line"><span class="comment">#unbind C-+</span></div><div class="line"><span class="comment">#bind C-+ \</span></div><div class="line"><span class="comment">#new-window -d -n tmux-zoom 'clear &amp;&amp; echo TMUX ZOOM &amp;&amp; read'\;\</span></div><div class="line"><span class="comment">#swap-pane -s tmux-zoom.0 \;\</span></div><div class="line"><span class="comment">#select-window -t tmux-zoom</span></div><div class="line"></div><div class="line"><span class="comment"># Zoom back ctrl + a + ctrl + '-'</span></div><div class="line"><span class="comment">#unbind C--</span></div><div class="line"><span class="comment">#bind C-- \</span></div><div class="line"><span class="comment">#	last-window \;\</span></div><div class="line"><span class="comment">#	swap-pane -s tmux-zoom.0 \;\</span></div><div class="line"><span class="comment">#	kill-window -t tmux-zoom</span></div><div class="line"></div><div class="line"><span class="comment"># Visual Activity Monitoring between windows</span></div><div class="line">setw -g monitor-activity on</div><div class="line"><span class="built_in">set</span> -g visual-activity on</div><div class="line"></div><div class="line"><span class="comment"># Show tmux positions in titles</span></div><div class="line"><span class="built_in">set</span> -g <span class="built_in">set</span>-titles on</div><div class="line"></div><div class="line"><span class="comment"># Set up a basic panel structure for command + ctr D</span></div><div class="line"><span class="built_in">bind</span> D <span class="built_in">source</span>-file ~/.tmux/dev</div><div class="line"></div><div class="line"><span class="comment"># Attach to a session if runs otherwise create a new one</span></div><div class="line">new-session -n <span class="variable">$HOST</span></div><div class="line"></div><div class="line"><span class="comment"># Copy from tmux to system clipboard</span></div><div class="line"><span class="comment"># Needs xclip -&gt; sudo apt install xclip</span></div><div class="line"><span class="built_in">bind</span> -t vi-copy y copy-pipe <span class="string">"xclip -sel clip -i"</span></div><div class="line"></div><div class="line"><span class="comment">#####################################</span></div><div class="line"><span class="comment"># Plugins</span></div><div class="line"><span class="comment">#https://github.com/tmux-plugins/tpm</span></div><div class="line"><span class="comment">####################################</span></div><div class="line"></div><div class="line"><span class="comment">#####################################</span></div><div class="line"><span class="comment"># tpm plugin manager</span></div><div class="line"><span class="comment"># https://github.com/tmux-plugins/tpm </span></div><div class="line"><span class="comment">#####################################</span></div><div class="line"><span class="built_in">set</span> -g @plugin <span class="string">'tmux-plugins/tpm'</span></div><div class="line"></div><div class="line"><span class="comment">#####################################</span></div><div class="line"><span class="comment"># tmux-sensible - basline settings that get overwritten from .tmux.conf</span></div><div class="line"><span class="comment"># https://github.com/tmux-plugins/tmux-sensible</span></div><div class="line"><span class="comment">######################################</span></div><div class="line"><span class="comment">#set -g @plugin 'tmux-plugins/tmux-sensible'</span></div><div class="line"></div><div class="line"><span class="comment">#####################################</span></div><div class="line"><span class="comment"># tmux-resurrect - save and reload sessions and windows after a restart</span></div><div class="line"><span class="comment"># https://github.com/tmux-plugins/tmux-resurrect</span></div><div class="line"><span class="comment"># Default keybinds : save - command + c + s &amp;&amp; restore command + c + r</span></div><div class="line"><span class="comment">######################################</span></div><div class="line"><span class="built_in">set</span> -g @plugin <span class="string">'tmux-plugins/tmux-resurrect'</span></div><div class="line"><span class="comment">### tmux-resurrect extra settings ###</span></div><div class="line"><span class="comment"># keep vim sessions after reboot</span></div><div class="line"><span class="built_in">set</span> -g @resurrect-strategy-vim <span class="string">'session'</span></div><div class="line"><span class="comment"># keep pane contents</span></div><div class="line"><span class="built_in">set</span> -g @resurrect-capture-pane-contents <span class="string">'on'</span></div><div class="line"><span class="comment"># restore bash history</span></div><div class="line"><span class="built_in">set</span> -g @resurrect-save-bash-history <span class="string">'on'</span></div><div class="line"><span class="comment">### /tmux-resurrect extra settings ###</span></div><div class="line"></div><div class="line"><span class="comment">######################################</span></div><div class="line"><span class="comment"># tmux-continuum - automatically save and restore tmux sessions</span></div><div class="line"><span class="comment"># https://github.com/tmux-plugins/tmux-continuum</span></div><div class="line"><span class="comment">#####################################</span></div><div class="line"><span class="built_in">set</span> -g @plugin <span class="string">'tmux-plugins/tmux-continuum'</span></div><div class="line"><span class="comment"># Restore last saved enviroment</span></div><div class="line"><span class="built_in">set</span> -g @continuum-restore <span class="string">'on'</span></div><div class="line"><span class="comment"># Set autosave interval</span></div><div class="line"><span class="built_in">set</span> -g @continuum-save-interval <span class="string">'5'</span></div><div class="line"><span class="comment"># Show continiuum state in statusbar</span></div><div class="line"><span class="comment">#set -g status-right 'Continuum status: #&#123;continuum_status&#125;'</span></div><div class="line"><span class="comment"># Starting tmux with system https://github.com/tmux-plugins/tmux-continuum/blob/master/docs/automatic_start.md</span></div><div class="line"></div><div class="line"><span class="comment">######################################</span></div><div class="line"><span class="comment"># tmux-yank - advanced copy mode</span></div><div class="line"><span class="comment"># https://github.com/tmux-plugins/tmux-yank</span></div><div class="line"><span class="comment">#####################################</span></div><div class="line"><span class="built_in">set</span> -g @plugin <span class="string">'tmux-plugins/tmux-yank'</span></div><div class="line"></div><div class="line"><span class="comment"># initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)</span></div><div class="line">run <span class="string">'~/.tmux/plugins/tpm/tpm'</span></div></pre></td></tr></table></figure>
+<h3 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h3><ul>
+<li><a href="https://github.com/tmux-plugins/tpm" target="_blank" rel="external">tpm plugin manager</a></li>
+<li><a href="https://github.com/tmux-plugins/tmux-sensible" target="_blank" rel="external">tmux sensible</a></li>
+<li><a href="https://github.com/tmux-plugins/tmux-resurrect" target="_blank" rel="external">tmux resurrect</a> - Save and restore session after reboot</li>
+<li><a href="https://github.com/tmux-plugins/tmux-continuum" target="_blank" rel="external">tmux-continuum</a> - automatically save and restore tmux sessions</li>
+<li><a href="https://github.com/tmux-plugins/tmux-yank" target="_blank" rel="external">tmux-yank</a> - Advanced copy mode</li>
+</ul>
+<h3 id="Keybindings"><a href="#Keybindings" class="headerlink" title="Keybindings"></a>Keybindings</h3><table>
+<thead>
+<tr>
+<th>Keybinding</th>
+<th style="text-align:center">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl + a</td>
+<td style="text-align:center">Command</td>
+</tr>
+<tr>
+<td>Command + t</td>
+<td style="text-align:center">New window</td>
+</tr>
+<tr>
+<td>Command + w</td>
+<td style="text-align:center">Kill pane</td>
+</tr>
+<tr>
+<td>Command + q</td>
+<td style="text-align:center">Kill session</td>
+</tr>
+<tr>
+<td>Command + r</td>
+<td style="text-align:center">Reload tmux config</td>
+</tr>
+<tr>
+<td>Command + z</td>
+<td style="text-align:center">Zoom to pane</td>
+</tr>
+<tr>
+<td>Command + $</td>
+<td style="text-align:center">Rename session</td>
+</tr>
+<tr>
+<td>Command + ,</td>
+<td style="text-align:center">Rename window</td>
+</tr>
+<tr>
+<td>Command + g</td>
+<td style="text-align:center">Split vertically</td>
+</tr>
+<tr>
+<td>Command + h</td>
+<td style="text-align:center">Split horizontally</td>
+</tr>
+<tr>
+<td>Command + ?</td>
+<td style="text-align:center">List keyboard shortcuts</td>
+</tr>
+<tr>
+<td>Command + :</td>
+<td style="text-align:center">Command prompt</td>
+</tr>
+<tr>
+<td>Command + s</td>
+<td style="text-align:center">List sessions</td>
+</tr>
+<tr>
+<td>Command + Ctrl + r</td>
+<td style="text-align:center">Reload session</td>
+</tr>
+<tr>
+<td>Command + Ctrl + s</td>
+<td style="text-align:center">Save session</td>
+</tr>
+<tr>
+<td>Command + Shift + i</td>
+<td style="text-align:center">Install plugins</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Copy-and-paste-in-mouse-mode"><a href="#Copy-and-paste-in-mouse-mode" class="headerlink" title="Copy and paste in mouse mode"></a>Copy and paste in mouse mode</h3><p>Copy:</p>
+<ul>
+<li>Enter scroll mode with the mouse wheel.</li>
+<li>Select the text and press y.</li>
+<li>This copies the text into the clipboard.</li>
+<li>Exit scroll mode with escape.</li>
+</ul>
+<p>Advanced copy:</p>
+<ul>
+<li>Enter scroll mode with the mouse wheel.</li>
+<li>Select the text and press Y.</li>
+<li>This copies the text into the terminal buffer and the clipboard.</li>
+<li>Exit scroll mode with escape.</li>
+</ul>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/peterforgacs">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Install"><span class="toc-number">1.</span> <span class="toc-text">Install</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tweaking"><span class="toc-number">2.</span> <span class="toc-text">Tweaking</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Plugins"><span class="toc-number">2.1.</span> <span class="toc-text">Plugins</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Keybindings"><span class="toc-number">2.2.</span> <span class="toc-text">Keybindings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Copy-and-paste-in-mouse-mode"><span class="toc-number">2.3.</span> <span class="toc-text">Copy and paste in mouse mode</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/04/25/Tmux/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/04/25/Tmux/&text=Tmux"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/04/25/Tmux/&title=Tmux"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/04/25/Tmux/&is_video=false&description=Tmux"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Tmux&body=Check out this article: http://yoursite.com/2017/04/25/Tmux/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/04/25/Tmux/&title=Tmux"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/04/25/Tmux/&title=Tmux"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/04/25/Tmux/&title=Tmux"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/04/25/Tmux/&title=Tmux"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/04/25/Tmux/&name=Tmux&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 Peter Forgacs
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/peterforgacs">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-97407927-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'peterforgacs-github-io';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
