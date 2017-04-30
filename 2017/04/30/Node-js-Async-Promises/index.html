@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang=En>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="IntroductionA promise is just an object.A promise can be either pending or settled.A settled promise can be fulfilled or rejected.We can ‘listen’ for a certain promise to be settled with the .then and">
+<meta name="keywords" content="Node.js,Promise">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js Async: Promises">
+<meta property="og:url" content="http://yoursite.com/2017/04/30/Node-js-Async-Promises/index.html">
+<meta property="og:site_name" content="Peter Forgacs">
+<meta property="og:description" content="IntroductionA promise is just an object.A promise can be either pending or settled.A settled promise can be fulfilled or rejected.We can ‘listen’ for a certain promise to be settled with the .then and">
+<meta property="og:updated_time" content="2017-04-30T12:36:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js Async: Promises">
+<meta name="twitter:description" content="IntroductionA promise is just an object.A promise can be either pending or settled.A settled promise can be fulfilled or rejected.We can ‘listen’ for a certain promise to be settled with the .then and">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Node.js Async: Promises</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/peterforgacs">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/04/28/Node-js-Patterns-Sequential-Iteration-Pattern/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/04/30/Node-js-Async-Promises/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/04/30/Node-js-Async-Promises/&text=Node.js Async: Promises"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/04/30/Node-js-Async-Promises/&title=Node.js Async: Promises"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/04/30/Node-js-Async-Promises/&is_video=false&description=Node.js Async: Promises"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Node.js Async: Promises&body=Check out this article: http://yoursite.com/2017/04/30/Node-js-Async-Promises/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/04/30/Node-js-Async-Promises/&title=Node.js Async: Promises"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/04/30/Node-js-Async-Promises/&title=Node.js Async: Promises"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/04/30/Node-js-Async-Promises/&title=Node.js Async: Promises"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/04/30/Node-js-Async-Promises/&title=Node.js Async: Promises"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/04/30/Node-js-Async-Promises/&name=Node.js Async: Promises&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#then"><span class="toc-number">2.</span> <span class="toc-text">then</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chain"><span class="toc-number">3.</span> <span class="toc-text">chain</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise-all"><span class="toc-number">4.</span> <span class="toc-text">Promise.all</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise-race"><span class="toc-number">5.</span> <span class="toc-text">Promise.race</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Node.js Async: Promises
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Peter Forgacs</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-04-30T14:27:03.000Z" itemprop="datePublished">2017-04-30</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Node-js/">Node.js</a>, <a class="tag-link" href="/tags/Promise/">Promise</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>A promise is just an object.<br>A promise can be either pending or settled.<br>A settled promise can be fulfilled or rejected.<br>We can ‘listen’ for a certain promise to be settled with the .then and .catch().</p>
+<p>With a single then() you can receive two callback functions.<br>One for onfulfilled success and one for onfailure.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFunction</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">			resolve(<span class="string">'async resolve'</span>);</div><div class="line">            reject(<span class="string">'async reject'</span>);</div><div class="line">        &#125;, <span class="number">1000</span>);</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">myFunction()</div><div class="line">.then( <span class="function"><span class="params">val</span> =&gt;</span> &#123;</div><div class="line">	<span class="built_in">console</span>.log(val);</div><div class="line">&#125;, err =&gt; &#123;</div><div class="line">	<span class="built_in">console</span>.log(err);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="then"><a href="#then" class="headerlink" title="then"></a>then</h2><p>You can simply return a value from a then.<br>You can return a promise.<br>You can return a function that returns a promise.<br>If you use return synchronously it does not get called again.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myAsync</span>(<span class="params">val</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">        resolve(val+<span class="number">1</span>)</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">Promise</span>.resolve(<span class="number">1</span>)															<span class="comment">// 1</span></div><div class="line">.then( <span class="function"><span class="params">value</span> =&gt;</span> &#123;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span> ( <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">		resolve(value+<span class="number">1</span>);													<span class="comment">// 2</span></div><div class="line">	&#125;);</div><div class="line">&#125;)</div><div class="line">.then( <span class="function"><span class="params">value</span> =&gt;</span> &#123;													</div><div class="line">	<span class="keyword">return</span> myAsync(value);													<span class="comment">// 3</span></div><div class="line">&#125;)</div><div class="line">.then( <span class="function"><span class="params">value</span> =&gt;</span> &#123;</div><div class="line">	<span class="keyword">return</span> (value+<span class="number">1</span>);														<span class="comment">// 4</span></div><div class="line">&#125;)</div><div class="line">.then( <span class="function"><span class="params">value</span> =&gt;</span> &#123;</div><div class="line">	<span class="built_in">console</span>.log(value);</div><div class="line">&#125;)</div><div class="line">.catch( <span class="function"><span class="params">error</span> =&gt;</span> &#123;</div><div class="line">	<span class="built_in">console</span>.log(error);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="chain"><a href="#chain" class="headerlink" title="chain"></a>chain</h2><p>You can throw synch error.<br>You can reject a promise.<br>You can listen to error from a previous then with a second argument from then.<br>You can listen to a whole chain with catch.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myAsyncReject</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">        reject(<span class="string">'Rejected from async'</span>);</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">Promise</span>.resolve(<span class="number">1</span>)</div><div class="line">.then( <span class="function"><span class="params">value</span> =&gt;</span> &#123;</div><div class="line">   <span class="keyword">throw</span> <span class="string">'sync throw'</span>;											<span class="comment">// Synch throw</span></div><div class="line">&#125;)</div><div class="line">.then( <span class="function"><span class="params">value</span> =&gt;</span> &#123;</div><div class="line">   <span class="comment">// Not getting called</span></div><div class="line">&#125;, (err) =&gt; &#123;</div><div class="line">	<span class="built_in">console</span>.log(err);</div><div class="line">	<span class="keyword">return</span> <span class="string">'Recovering from sync throw'</span>;</div><div class="line">&#125;)</div><div class="line">.then( <span class="function"><span class="params">recovery</span> =&gt;</span> &#123;</div><div class="line">   <span class="built_in">console</span>.log(recovery);</div><div class="line">&#125;)</div><div class="line">.then( <span class="function"><span class="params">()</span> =&gt;</span> &#123;													<span class="comment">// Since nothing is returned in the previous then</span></div><div class="line">   	<span class="keyword">return</span> myAsyncReject();										<span class="comment">// Async Reject</span></div><div class="line">&#125;)</div><div class="line">.then( <span class="function"><span class="params">val</span> =&gt;</span> &#123;													<span class="comment">// Should not be called</span></div><div class="line">   <span class="built_in">console</span>.log(<span class="string">'Should not be called'</span>);</div><div class="line">&#125;)</div><div class="line">.catch( <span class="function"><span class="params">error</span> =&gt;</span> &#123;</div><div class="line">   <span class="built_in">console</span>.log(error);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all"></a>Promise.all</h2><p>Good for waiting for all the promises to fulfill at once.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123; </div><div class="line">  setTimeout(resolve, <span class="number">1000</span>, <span class="string">'one'</span>); </div><div class="line">&#125;); </div><div class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123; </div><div class="line">  setTimeout(resolve, <span class="number">2000</span>, <span class="string">'two'</span>); </div><div class="line">&#125;);</div><div class="line"><span class="keyword">var</span> p3 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">  setTimeout(resolve, <span class="number">3000</span>, <span class="string">'three'</span>);</div><div class="line">&#125;);</div><div class="line"><span class="keyword">var</span> p4 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">  setTimeout(resolve, <span class="number">4000</span>, <span class="string">'four'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">Promise</span>.all([p1, p2, p3, p4]).then(<span class="function"><span class="params">values</span> =&gt;</span> &#123; </div><div class="line">  <span class="built_in">console</span>.log(values);</div><div class="line">&#125;, reason =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(reason)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race"></a>Promise.race</h2><p>Waiting for multiple promises but only get the one which resolves faster.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123; </div><div class="line">    setTimeout(resolve, <span class="number">500</span>, <span class="string">'one'</span>); </div><div class="line">&#125;);</div><div class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123; </div><div class="line">    setTimeout(resolve, <span class="number">100</span>, <span class="string">'two'</span>); </div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">Promise</span>.race([p1, p2]).then(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(value); <span class="comment">// "two"</span></div><div class="line">  <span class="comment">// Both resolve, but p2 is faster</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/peterforgacs">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#then"><span class="toc-number">2.</span> <span class="toc-text">then</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chain"><span class="toc-number">3.</span> <span class="toc-text">chain</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise-all"><span class="toc-number">4.</span> <span class="toc-text">Promise.all</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise-race"><span class="toc-number">5.</span> <span class="toc-text">Promise.race</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/04/30/Node-js-Async-Promises/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/04/30/Node-js-Async-Promises/&text=Node.js Async: Promises"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/04/30/Node-js-Async-Promises/&title=Node.js Async: Promises"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/04/30/Node-js-Async-Promises/&is_video=false&description=Node.js Async: Promises"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Node.js Async: Promises&body=Check out this article: http://yoursite.com/2017/04/30/Node-js-Async-Promises/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/04/30/Node-js-Async-Promises/&title=Node.js Async: Promises"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/04/30/Node-js-Async-Promises/&title=Node.js Async: Promises"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/04/30/Node-js-Async-Promises/&title=Node.js Async: Promises"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/04/30/Node-js-Async-Promises/&title=Node.js Async: Promises"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/04/30/Node-js-Async-Promises/&name=Node.js Async: Promises&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 Peter Forgacs
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/peterforgacs">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-97407927-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'peterforgacs-github-io';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
