@@ -7,6 +7,26 @@ if (!!$.prototype.justifiedGallery) {  // if justifiedGallery method is defined
   $('.article-gallery').justifiedGallery(options);
 }
 
+ /*******************************************************************************
+    Left and right arrow for previous and next article
+   ********************************************************************************/
+  $(document).keydown(function(e){
+    let domain   = window.location.host;
+    let next     = $('#next-post').attr('href');
+    let previous = $('#previous-post').attr('href');
+    
+    switch (e.keyCode) {
+      case 39:
+        if(next) window.location.href=`http://${domain}${next}`;
+        break;
+      case 37:
+        if (previous) window.location.href=`http://${domain}${previous}`;
+        break;
+      default:
+        break;
+    }
+  });
+
 $(document).ready(function(){
    /*******************************************************************************
     Allways show topics on dekstop
@@ -14,22 +34,6 @@ $(document).ready(function(){
    $('#menu').css('visibility','visible');
    $('#menu-icon').addClass('active');
    $("#menu > #nav").show();
-
-   /*******************************************************************************
-    Left and right arrow for previous and next article
-   ********************************************************************************/
-  $(document).keydown(function(e){
-    switch (e.keyCode) {
-      case 39:
-        alert('right');
-        break;
-      case 37:
-        alert('left');
-        break;
-      default:
-        break;
-    }
-  });
 
   $("#menu-icon, #menu-icon-tablet").click(function(){
     if ( $('#menu').css('visibility') == 'hidden' ) {
