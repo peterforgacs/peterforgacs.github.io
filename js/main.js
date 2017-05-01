@@ -8,10 +8,28 @@ if (!!$.prototype.justifiedGallery) {  // if justifiedGallery method is defined
 }
 
 $(document).ready(function(){
-  // Allways show menu values
+   /*******************************************************************************
+    Allways show topics on dekstop
+   ********************************************************************************/
    $('#menu').css('visibility','visible');
    $('#menu-icon').addClass('active');
    $("#menu > #nav").show();
+
+   /*******************************************************************************
+    Left and right arrow for previous and next article
+   ********************************************************************************/
+  $(document).keydown(function(e){
+    switch (e.keyCode) {
+      case 39:
+        alert('right');
+        break;
+      case 37:
+        alert('left');
+        break;
+      default:
+        break;
+    }
+  });
 
   $("#menu-icon, #menu-icon-tablet").click(function(){
     if ( $('#menu').css('visibility') == 'hidden' ) {
