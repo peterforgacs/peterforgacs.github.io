@@ -8,6 +8,11 @@ if (!!$.prototype.justifiedGallery) {  // if justifiedGallery method is defined
 }
 
 $(document).ready(function(){
+  // Allways show menu values
+   $('#menu').css('visibility','visible');
+   $('#menu-icon').addClass('active');
+   $("#menu > #nav").show();
+
   $("#menu-icon, #menu-icon-tablet").click(function(){
     if ( $('#menu').css('visibility') == 'hidden' ) {
       $('#menu').css('visibility','visible');
