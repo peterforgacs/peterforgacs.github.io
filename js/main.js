@@ -108,3 +108,14 @@ $(document).ready(function(){
     });
   }
 });
+
+/*******************************************************************************
+ If 404 redirect to main page
+********************************************************************************/
+
+'use strict';
+if (document.title === "404"){
+        var redirect = setTimeout(function(){
+            window.location.replace(`http://${window.location.hostname}`);
+        }, 10000);
+}
