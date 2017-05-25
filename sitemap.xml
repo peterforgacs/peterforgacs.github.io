@@ -2,63 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://peterforgacs.github.io/404.html</loc>
+    <loc>http://yoursite.com/2017/05/25/Best-vscode-plugins/</loc>
+    
+    <lastmod>2017-05-25T18:50:55.684Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com//404.html</loc>
     
     <lastmod>2017-05-12T21:42:48.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://peterforgacs.github.io/2017/04/30/Node-js-Async-Promises/</loc>
+    <loc>http://yoursite.com/2017/04/30/Node-js-Async-Promises/</loc>
     
     <lastmod>2017-04-30T12:36:59.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://peterforgacs.github.io/2017/04/28/Node-js-Patterns-Sequential-Iteration-Pattern/</loc>
+    <loc>http://yoursite.com/2017/04/28/Node-js-Patterns-Sequential-Iteration-Pattern/</loc>
     
     <lastmod>2017-04-30T12:14:03.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://peterforgacs.github.io/about/index.html</loc>
+    <loc>http://yoursite.com/about/index.html</loc>
     
     <lastmod>2017-04-27T19:47:34.091Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://peterforgacs.github.io/2017/04/25/Tmux/</loc>
+    <loc>http://yoursite.com/2017/04/25/Tmux/</loc>
     
     <lastmod>2017-04-26T12:31:34.849Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://peterforgacs.github.io/2017/04/18/Docker-basics/</loc>
+    <loc>http://yoursite.com/2017/04/18/Docker-basics/</loc>
     
     <lastmod>2017-04-23T19:39:45.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://peterforgacs.github.io/2017/04/16/Bash-tips-and-tricks/</loc>
+    <loc>http://yoursite.com/2017/04/16/Bash-tips-and-tricks/</loc>
     
     <lastmod>2017-04-17T19:46:47.447Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://peterforgacs.github.io/2017/04/17/How-WebRTC-works/</loc>
+    <loc>http://yoursite.com/2017/04/17/How-WebRTC-works/</loc>
     
     <lastmod>2017-04-17T19:40:41.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://peterforgacs.github.io/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/</loc>
+    <loc>http://yoursite.com/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/</loc>
     
     <lastmod>2017-04-16T19:50:50.000Z</lastmod>
     
