@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/04/30/Node-js-Async-Promises/</loc>
+    
+    <lastmod>2017-05-28T14:22:04.797Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/05/25/Best-vscode-plugins/</loc>
     
     <lastmod>2017-05-25T18:50:55.684Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://yoursite.com//404.html</loc>
     
     <lastmod>2017-05-12T21:42:48.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/04/30/Node-js-Async-Promises/</loc>
-    
-    <lastmod>2017-04-30T12:36:59.000Z</lastmod>
     
   </url>
   
