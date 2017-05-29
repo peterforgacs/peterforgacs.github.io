@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/29/How-to-use-async-await-with-Node-js-8-0-0/index.html">
 <meta property="og:site_name" content="Peter Forgacs">
 <meta property="og:description" content="Node.js 8.0.0 is around the corners so its a great time to learn about the shiny new async await features. In my opinion async await can help you write easier to understand and maintainable code but i">
-<meta property="og:updated_time" content="2017-05-29T20:04:26.101Z">
+<meta property="og:updated_time" content="2017-05-29T20:06:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Use Async Await With Node.js 8.0.0">
 <meta name="twitter:description" content="Node.js 8.0.0 is around the corners so its a great time to learn about the shiny new async await features. In my opinion async await can help you write easier to understand and maintainable code but i">
@@ -96,7 +96,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#async"><span class="toc-number">1.</span> <span class="toc-text">async</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Basics"><span class="toc-number">1.1.</span> <span class="toc-text">Basics</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#await"><span class="toc-number">2.</span> <span class="toc-text">await</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Basics-1"><span class="toc-number">2.1.</span> <span class="toc-text">Basics</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Iteration"><span class="toc-number">2.2.</span> <span class="toc-text">Iteration</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#async"><span class="toc-number">1.</span> <span class="toc-text">async</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#await"><span class="toc-number">2.</span> <span class="toc-text">await</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Iteration"><span class="toc-number">3.</span> <span class="toc-text">Iteration</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -139,7 +139,7 @@
     <p>Node.js 8.0.0 is around the corners so its a great time to learn about the shiny new async await features.</p>
 <p>In my opinion async await can help you write easier to understand and maintainable code but it requires at least a minimal understanding of Node.js promises to use effectively.</p>
 <p>Check out my <a href="http://peterforgacs.github.io/2017/04/30/Node-js-Async-Promises/" target="_blank" rel="external">article on promises</a> for additional info.</p>
-<h1 id="async"><a href="#async" class="headerlink" title="async"></a>async</h1><h2 id="Basics"><a href="#Basics" class="headerlink" title="Basics"></a>Basics</h2><ul>
+<h2 id="async"><a href="#async" class="headerlink" title="async"></a>async</h2><ul>
 <li>When an async function is called it returns a promise. </li>
 <li>When the async function returns a value the initial promise will be resolved with the returned value. </li>
 <li>When the async function throws a value the initial promise will be rejected with that value.</li>
@@ -148,7 +148,7 @@
 <p>Async functions return promises so they can be used with then / catch chains without having to wrap them. </p>
 <p>In this example i had to wrap setTimeout since its not an async function.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">doLater</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">            resolve(<span class="string">'done'</span>);</div><div class="line">        &#125;, <span class="number">1000</span>);</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">chainStart</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">await</span> doLater();</div><div class="line">&#125;</div><div class="line"></div><div class="line">doLater()</div><div class="line">    .then(<span class="function"><span class="params">val</span> =&gt;</span> &#123;</div><div class="line">        <span class="built_in">console</span>.log(val);</div><div class="line">    &#125;)</div><div class="line">	.catch( <span class="function"><span class="params">error</span> =&gt;</span> &#123;</div><div class="line">	   <span class="built_in">console</span>.log(error);</div><div class="line">	&#125;);</div></pre></td></tr></table></figure>
-<h1 id="await"><a href="#await" class="headerlink" title="await"></a>await</h1><h2 id="Basics-1"><a href="#Basics-1" class="headerlink" title="Basics"></a>Basics</h2><p>The await expression causes async function execution to pause, to wait for the Promise’s resolution, and to resume the async function execution when the value is resolved. It then returns the resolved value. If the value is not a Promise, it’s converted to a resolved Promise.</p>
+<h2 id="await"><a href="#await" class="headerlink" title="await"></a>await</h2><p>The await expression causes async function execution to pause, to wait for the Promise’s resolution, and to resume the async function execution when the value is resolved. It then returns the resolved value. If the value is not a Promise, it’s converted to a resolved Promise.</p>
 <p>If the Promise is rejected, the await expression throws the rejected value.</p>
 <p>Basically you can replace then chains inside functions to await expressions.<br>The only limitation is that you can’t use it on the top level so it must be inside an async function.</p>
 <p>Here we mock up an async function by wrapping setTimeout.<br>The await expressions are basically the same as then chains.</p>
@@ -189,7 +189,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#async"><span class="toc-number">1.</span> <span class="toc-text">async</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Basics"><span class="toc-number">1.1.</span> <span class="toc-text">Basics</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#await"><span class="toc-number">2.</span> <span class="toc-text">await</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Basics-1"><span class="toc-number">2.1.</span> <span class="toc-text">Basics</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Iteration"><span class="toc-number">2.2.</span> <span class="toc-text">Iteration</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#async"><span class="toc-number">1.</span> <span class="toc-text">async</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#await"><span class="toc-number">2.</span> <span class="toc-text">await</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Iteration"><span class="toc-number">3.</span> <span class="toc-text">Iteration</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
