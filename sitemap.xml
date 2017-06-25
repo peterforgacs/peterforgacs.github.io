@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://peterforgacs.github.io/2017/06/25/Custom-C-Exceptions-For-Beginners/</loc>
+    
+    <lastmod>2017-06-25T19:32:52.135Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://peterforgacs.github.io/2017/05/29/How-to-use-async-await-with-Node-js-8-0-0/</loc>
     
     <lastmod>2017-05-29T20:06:31.000Z</lastmod>
