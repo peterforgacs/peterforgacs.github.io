@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://peterforgacs.github.io/2017/10/23/Playing-with-front-end-build-tools/</loc>
+    
+    <lastmod>2017-10-23T15:36:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://peterforgacs.github.io/2017/06/25/Custom-C-Exceptions-For-Beginners/</loc>
     
     <lastmod>2017-06-25T19:32:52.135Z</lastmod>
