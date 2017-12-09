@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang=En>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="If you are using JSX and bundling it you need to generate a sourcemap in order to be able to debug the code you are actually writing.I’ve tweaked my existing react setup found here. We need to add one">
+<meta name="keywords" content="React,Webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Debugging React With Sourcemaps">
+<meta property="og:url" content="http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/index.html">
+<meta property="og:site_name" content="Peter Forgacs">
+<meta property="og:description" content="If you are using JSX and bundling it you need to generate a sourcemap in order to be able to debug the code you are actually writing.I’ve tweaked my existing react setup found here. We need to add one">
+<meta property="og:image" content="http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/react-sourcemap.png">
+<meta property="og:updated_time" content="2017-12-09T19:33:20.404Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Debugging React With Sourcemaps">
+<meta name="twitter:description" content="If you are using JSX and bundling it you need to generate a sourcemap in order to be able to debug the code you are actually writing.I’ve tweaked my existing react setup found here. We need to add one">
+<meta name="twitter:image" content="http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/react-sourcemap.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Debugging React With Sourcemaps</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/peterforgacs">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a id="previous-post" class="icon" href="/2017/09/25/Playing-with-front-end-build-tools/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/&text=Debugging React With Sourcemaps"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/&title=Debugging React With Sourcemaps"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/&is_video=false&description=Debugging React With Sourcemaps"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Debugging React With Sourcemaps&body=Check out this article: http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/&title=Debugging React With Sourcemaps"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/&title=Debugging React With Sourcemaps"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/&title=Debugging React With Sourcemaps"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/&title=Debugging React With Sourcemaps"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/&name=Debugging React With Sourcemaps&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Debugging React With Sourcemaps
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Peter Forgacs</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-12-09T20:17:46.000Z" itemprop="datePublished">2017-12-09</time>
+        <span class="readTime"></span>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/React/">React</a>, <a class="tag-link" href="/tags/Webpack/">Webpack</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>If you are using JSX and bundling it you need to generate a sourcemap in order to be able to debug the code you are actually writing.<br>I’ve tweaked my existing react setup found <a href="https://github.com/peterforgacs/starting-react" target="_blank" rel="external">here</a>.</p>
+<p>We need to add one thing to the webpack.config.js file.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">devtool: <span class="string">"source-map"</span></div></pre></td></tr></table></figure>
+<p>Also for webpack-dev-server we need to add two addition arguments –debug and –output-pathinfo.</p>
+<p>So the start script in package.json looks like this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">"start"</span>: <span class="string">"npx webpack-dev-server --hot --progress --colors --debug --output-pathinfo"</span></div></pre></td></tr></table></figure>
+<p>Now if start react-dev-server and go to localhost:8080 and inspect the page i can find the source map files under webpack.</p>
+<p><img src="react-sourcemap.png" alt=""></p>
+<p>I can also debug the app from vscode.</p>
+<p>I needed to install the Debug from Chrome extension and set the following launch.json.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"version"</span>: <span class="string">"0.2.0"</span>,</div><div class="line">    <span class="attr">"configurations"</span>: [</div><div class="line">        &#123;</div><div class="line">            <span class="attr">"name"</span>: <span class="string">"Chrome"</span>,</div><div class="line">            <span class="attr">"type"</span>: <span class="string">"chrome"</span>,</div><div class="line">            <span class="attr">"request"</span>: <span class="string">"launch"</span>,</div><div class="line">            <span class="attr">"url"</span>: <span class="string">"http://localhost:8080"</span>,</div><div class="line">            <span class="attr">"webRoot"</span>: <span class="string">"$&#123;workspaceRoot&#125;/src"</span></div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/peterforgacs">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/&text=Debugging React With Sourcemaps"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/&title=Debugging React With Sourcemaps"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/&is_video=false&description=Debugging React With Sourcemaps"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Debugging React With Sourcemaps&body=Check out this article: http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/&title=Debugging React With Sourcemaps"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/&title=Debugging React With Sourcemaps"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/&title=Debugging React With Sourcemaps"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/&title=Debugging React With Sourcemaps"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/&name=Debugging React With Sourcemaps&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 Peter Forgacs
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/peterforgacs">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-97407927-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'peterforgacs-github-io';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+

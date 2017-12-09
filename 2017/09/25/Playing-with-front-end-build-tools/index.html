@@ -7,7 +7,7 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="I wanted to learn and test React so as my first attempt i’ve tried to install a full react development environment. This did not went well, i had no idea how webpack is using babel to convert my react">
-<meta name="keywords" content="Babel,Webpack,React">
+<meta name="keywords" content="React,Webpack,Babel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Getting Started With Babel Webpack React">
 <meta property="og:url" content="http://peterforgacs.github.io/2017/09/25/Playing-with-front-end-build-tools/index.html">
@@ -70,6 +70,8 @@
         
         <li><a id="previous-post" class="icon" href="/2017/06/25/Custom-C-Exceptions-For-Beginners/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
         
+        
+        <li><a id="next-post" class="icon" href="/2017/12/09/Debugging-React-with-sourcemaps/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
         <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
@@ -154,7 +156,7 @@
 <p>Now i can transform my app.js to compiled.js and babel will polyfill the es2015 parts.</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npx babel app.js --outfile compiled.js presets=es2015</div></pre></td></tr></table></figure>
 <p>This creates a new file:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">_classCallCheck</span>(<span class="params">instance, Constructor</span>) </span>&#123; <span class="keyword">if</span> (!(instance <span class="keyword">instanceof</span> Constructor)) &#123; <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">"Cannot call a class as a function"</span>); &#125; &#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> Widget = <span class="function"><span class="keyword">function</span> <span class="title">Widget</span>(<span class="params">elem, name</span>) </span>&#123;</div><div class="line">  _classCallCheck(<span class="keyword">this</span>, Widget);</div><div class="line"></div><div class="line">  <span class="keyword">this</span>.$elem = elem;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> _classCallCheck(<span class="params">instance, Constructor</span>) </span>&#123; <span class="keyword">if</span> (!(instance <span class="keyword">instanceof</span> Constructor)) &#123; <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">"Cannot call a class as a function"</span>); &#125; &#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> Widget = <span class="function"><span class="keyword">function</span> <span class="title">Widget</span>(<span class="params">elem, name</span>) </span>&#123;</div><div class="line">  _classCallCheck(<span class="keyword">this</span>, Widget);</div><div class="line"></div><div class="line">  <span class="keyword">this</span>.$elem = elem;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <h3 id="Deciding-what-gets-polyfilled"><a href="#Deciding-what-gets-polyfilled" class="headerlink" title="Deciding what gets polyfilled"></a>Deciding what gets polyfilled</h3><p>There are two ways to set what babel does.</p>
 <ul>
 <li><strong>plugins</strong> - Define a polyfillable element or some action like uglify.</li>
