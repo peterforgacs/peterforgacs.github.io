@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://peterforgacs.github.io/2018/02/11/Processing-images-on-the-server-and-renderer-side/</loc>
+    
+    <lastmod>2018-02-11T20:25:33.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/</loc>
     
     <lastmod>2017-12-09T19:33:20.404Z</lastmod>
