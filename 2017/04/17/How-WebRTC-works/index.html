@@ -13,6 +13,7 @@
 <meta property="og:url" content="http://peterforgacs.github.io/2017/04/17/How-WebRTC-works/index.html">
 <meta property="og:site_name" content="Peter Forgacs">
 <meta property="og:description" content="Browser compatibilityWebRTC has a global ~62% compatibility rate in 2016.You can use it safely on most of the major desktop browsers. http://caniuse.com/#search=webrtc Parts of WebRTCWebRTC has 3 majo">
+<meta property="og:locale" content="English">
 <meta property="og:updated_time" content="2017-04-17T19:40:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How WebRTC Works">
@@ -68,10 +69,10 @@
     <span id="actions">
       <ul>
         
-        <li><a id="previous-post" class="icon" href="/2017/04/16/Bash-tips-and-tricks/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        <li><a id="previous-post" class="icon" href="/2017/04/18/Docker-basics/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
         
         
-        <li><a id="next-post" class="icon" href="/2017/04/18/Docker-basics/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        <li><a id="next-post" class="icon" href="/2017/04/16/Bash-tips-and-tricks/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
         <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
@@ -98,7 +99,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Browser-compatibility"><span class="toc-number">1.</span> <span class="toc-text">Browser compatibility</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Parts-of-WebRTC"><span class="toc-number">2.</span> <span class="toc-text">Parts of WebRTC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Audio-amp-Video-engine"><span class="toc-number">3.</span> <span class="toc-text">Audio & Video engine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transport-Layer"><span class="toc-number">4.</span> <span class="toc-text">Transport Layer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Signaling-Server"><span class="toc-number">5.</span> <span class="toc-text">Signaling Server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Example-connection"><span class="toc-number">6.</span> <span class="toc-text">Example connection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebRTC-frameworks"><span class="toc-number">7.</span> <span class="toc-text">WebRTC frameworks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Articles"><span class="toc-number">8.</span> <span class="toc-text">Articles</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Browser-compatibility"><span class="toc-number">1.</span> <span class="toc-text">Browser compatibility</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Parts-of-WebRTC"><span class="toc-number">2.</span> <span class="toc-text">Parts of WebRTC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Audio-amp-Video-engine"><span class="toc-number">3.</span> <span class="toc-text">Audio &amp; Video engine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transport-Layer"><span class="toc-number">4.</span> <span class="toc-text">Transport Layer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Signaling-Server"><span class="toc-number">5.</span> <span class="toc-text">Signaling Server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Example-connection"><span class="toc-number">6.</span> <span class="toc-text">Example connection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebRTC-frameworks"><span class="toc-number">7.</span> <span class="toc-text">WebRTC frameworks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Articles"><span class="toc-number">8.</span> <span class="toc-text">Articles</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -139,7 +140,7 @@
 
   <div class="content" itemprop="articleBody">
     <h2 id="Browser-compatibility"><a href="#Browser-compatibility" class="headerlink" title="Browser compatibility"></a>Browser compatibility</h2><p>WebRTC has a global ~62% compatibility rate in 2016.<br>You can use it safely on most of the major desktop browsers.</p>
-<p><a href="http://caniuse.com/#search=webrtc" target="_blank" rel="external">http://caniuse.com/#search=webrtc</a></p>
+<p><a href="http://caniuse.com/#search=webrtc" target="_blank" rel="noopener">http://caniuse.com/#search=webrtc</a></p>
 <h2 id="Parts-of-WebRTC"><a href="#Parts-of-WebRTC" class="headerlink" title="Parts of WebRTC"></a>Parts of WebRTC</h2><p>WebRTC has 3 major parts built into the browser.</p>
 <ul>
 <li>Audio engine</li>
@@ -147,12 +148,12 @@
 <li>Transport layer</li>
 </ul>
 <h2 id="Audio-amp-Video-engine"><a href="#Audio-amp-Video-engine" class="headerlink" title="Audio &amp; Video engine"></a>Audio &amp; Video engine</h2><p>You can access the media stream trough the getUserMedia API.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">navigator.getUserMedia(&#123;<span class="attr">video</span>:<span class="literal">true</span>, <span class="attr">audio</span>:<span class="literal">false</span>&#125;, </div><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">stream</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> video = <span class="built_in">document</span>.querySelector(<span class="string">'video'</span>);</div><div class="line">	video.src = <span class="built_in">window</span>.URL.createObjectUrl(stream);</div><div class="line">&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>)</span>&#123;&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">navigator.getUserMedia(&#123;<span class="attr">video</span>:<span class="literal">true</span>, <span class="attr">audio</span>:<span class="literal">false</span>&#125;, </span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">stream</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> video = <span class="built_in">document</span>.querySelector(<span class="string">'video'</span>);</span><br><span class="line">	video.src = <span class="built_in">window</span>.URL.createObjectUrl(stream);</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>)</span>&#123;&#125;);</span><br></pre></td></tr></table></figure>
 <p>This asks for permission  to use the webcam or microphone according to the given constraints.</p>
 <p>The media stream is represented as a Blob object in Javascript ( immutable objects that represent raw data ). The createObjectUrl method creates a DOM String that represents the media stream for the current session and can be used as source on video elements.</p>
 <h2 id="Transport-Layer"><a href="#Transport-Layer" class="headerlink" title="Transport Layer"></a>Transport Layer</h2><p>The transportation layer can be used trough the RTCPeerConnection object.<br>The job of the RTCPeerConnection object is to maintain the session and state of a peer connection in the browser. It also handles the setup and creation of a peer connection.</p>
 <p>To connect people you also need a signaling server which is not defined in the WebRTC standard.</p>
-<h2 id="Signaling-Server"><a href="#Signaling-Server" class="headerlink" title="Signaling Server"></a>Signaling Server</h2><p>Most of the time WebSockets is used for the signaling server.<br>For production some people advise to use socket.io (<a href="http://socket.io/" target="_blank" rel="external">http://socket.io/</a>) which is built on top of WebSockets.<br>You can also use traditional frameworks like XMMP.</p>
+<h2 id="Signaling-Server"><a href="#Signaling-Server" class="headerlink" title="Signaling Server"></a>Signaling Server</h2><p>Most of the time WebSockets is used for the signaling server.<br>For production some people advise to use socket.io (<a href="http://socket.io/" target="_blank" rel="noopener">http://socket.io/</a>) which is built on top of WebSockets.<br>You can also use traditional frameworks like XMMP.</p>
 <h2 id="Example-connection"><a href="#Example-connection" class="headerlink" title="Example connection"></a>Example connection</h2><p>A connection between user1 and user2:</p>
 <ul>
 <li>user1 calls CreateOffer()  </li>
@@ -168,16 +169,16 @@
 <p>A connection starts with an offer from one user.<br>This sends the sdp file to the server that gets sent to the offered user.<br>The sdp file contains information about media codecs etc. used by the offering party. These sdp files are exchanged so both client has his and the other clients sdp saved.</p>
 <p>To finalize the the peer to peer connection you also need to use the ICE framework ( built into the browser ) that uses either STUN or TURN protocols to figure out the correct local / remote IP of  the peers. Depending on the users network configuration ICE either uses STUN or TURN.</p>
 <p>During the setup of the RTCPeerConnection object you can specify a STUN or TURN server that is mainly used to get the outside IP of the client.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> configuration = &#123;</div><div class="line">    <span class="string">"iceServers"</span>: [&#123; <span class="string">"url"</span>: <span class="string">"stun:stun.1.google.com:19302"</span> &#125;]</div><div class="line">  &#125;;</div><div class="line">yourConnection = <span class="keyword">new</span> RTCPeerConnection(configuration);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> configuration = &#123;</span><br><span class="line">    <span class="string">"iceServers"</span>: [&#123; <span class="string">"url"</span>: <span class="string">"stun:stun.1.google.com:19302"</span> &#125;]</span><br><span class="line">  &#125;;</span><br><span class="line">yourConnection = <span class="keyword">new</span> RTCPeerConnection(configuration);</span><br></pre></td></tr></table></figure>
 <p>After the peer connection has been established we can use the other peers media stream the same way as the local stream.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">yourConnection.addStream(stream);</div><div class="line">  yourConnection.onaddstream = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">    theirVideo.src = <span class="built_in">window</span>.URL.createObjectURL(e.stream);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yourConnection.addStream(stream);</span><br><span class="line">  yourConnection.onaddstream = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    theirVideo.src = <span class="built_in">window</span>.URL.createObjectURL(e.stream);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h2 id="WebRTC-frameworks"><a href="#WebRTC-frameworks" class="headerlink" title="WebRTC frameworks"></a>WebRTC frameworks</h2><ul>
-<li><a href="https://tokbox.com/" target="_blank" rel="external">tokbox</a></li>
-<li><a href="https://github.com/priologic/easyrtc" target="_blank" rel="external">easyrtc</a></li>
-<li><a href="https://github.com/andyet/SimpleWebRTC" target="_blank" rel="external">simpleWebRTC</a></li>
+<li><a href="https://tokbox.com/" target="_blank" rel="noopener">tokbox</a></li>
+<li><a href="https://github.com/priologic/easyrtc" target="_blank" rel="noopener">easyrtc</a></li>
+<li><a href="https://github.com/andyet/SimpleWebRTC" target="_blank" rel="noopener">simpleWebRTC</a></li>
 </ul>
 <h2 id="Articles"><a href="#Articles" class="headerlink" title="Articles"></a>Articles</h2><ul>
-<li><a href="https://bloggeek.me/siganling-protocol-webrtc/" target="_blank" rel="external">https://bloggeek.me/siganling-protocol-webrtc/</a></li>
+<li><a href="https://bloggeek.me/siganling-protocol-webrtc/" target="_blank" rel="noopener">https://bloggeek.me/siganling-protocol-webrtc/</a></li>
 </ul>
 
   </div>
@@ -211,7 +212,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Browser-compatibility"><span class="toc-number">1.</span> <span class="toc-text">Browser compatibility</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Parts-of-WebRTC"><span class="toc-number">2.</span> <span class="toc-text">Parts of WebRTC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Audio-amp-Video-engine"><span class="toc-number">3.</span> <span class="toc-text">Audio & Video engine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transport-Layer"><span class="toc-number">4.</span> <span class="toc-text">Transport Layer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Signaling-Server"><span class="toc-number">5.</span> <span class="toc-text">Signaling Server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Example-connection"><span class="toc-number">6.</span> <span class="toc-text">Example connection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebRTC-frameworks"><span class="toc-number">7.</span> <span class="toc-text">WebRTC frameworks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Articles"><span class="toc-number">8.</span> <span class="toc-text">Articles</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Browser-compatibility"><span class="toc-number">1.</span> <span class="toc-text">Browser compatibility</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Parts-of-WebRTC"><span class="toc-number">2.</span> <span class="toc-text">Parts of WebRTC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Audio-amp-Video-engine"><span class="toc-number">3.</span> <span class="toc-text">Audio &amp; Video engine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transport-Layer"><span class="toc-number">4.</span> <span class="toc-text">Transport Layer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Signaling-Server"><span class="toc-number">5.</span> <span class="toc-text">Signaling Server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Example-connection"><span class="toc-number">6.</span> <span class="toc-text">Example connection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebRTC-frameworks"><span class="toc-number">7.</span> <span class="toc-text">WebRTC frameworks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Articles"><span class="toc-number">8.</span> <span class="toc-text">Articles</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
@@ -245,7 +246,7 @@
     
     <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2017 Peter Forgacs
+    Copyright &copy; 2018 Peter Forgacs
   </div>
   <div class="footer-right">
     <nav>

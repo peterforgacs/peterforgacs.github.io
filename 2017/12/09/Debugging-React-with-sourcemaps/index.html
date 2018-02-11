@@ -13,6 +13,7 @@
 <meta property="og:url" content="http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/index.html">
 <meta property="og:site_name" content="Peter Forgacs">
 <meta property="og:description" content="If you are using JSX and bundling it you need to generate a sourcemap in order to be able to debug the code you are actually writing.I’ve tweaked my existing react setup found here. We need to add one">
+<meta property="og:locale" content="English">
 <meta property="og:image" content="http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/react-sourcemap.png">
 <meta property="og:updated_time" content="2017-12-09T19:33:20.404Z">
 <meta name="twitter:card" content="summary">
@@ -70,8 +71,8 @@
     <span id="actions">
       <ul>
         
-        <li><a id="previous-post" class="icon" href="/2017/09/25/Playing-with-front-end-build-tools/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
         
+        <li><a id="next-post" class="icon" href="/2017/09/25/Playing-with-front-end-build-tools/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
         <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
@@ -138,17 +139,17 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>If you are using JSX and bundling it you need to generate a sourcemap in order to be able to debug the code you are actually writing.<br>I’ve tweaked my existing react setup found <a href="https://github.com/peterforgacs/starting-react" target="_blank" rel="external">here</a>.</p>
+    <p>If you are using JSX and bundling it you need to generate a sourcemap in order to be able to debug the code you are actually writing.<br>I’ve tweaked my existing react setup found <a href="https://github.com/peterforgacs/starting-react" target="_blank" rel="noopener">here</a>.</p>
 <p>We need to add one thing to the webpack.config.js file.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">devtool: <span class="string">"source-map"</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">devtool: <span class="string">"source-map"</span></span><br></pre></td></tr></table></figure>
 <p>Also for webpack-dev-server we need to add two addition arguments –debug and –output-pathinfo.</p>
 <p>So the start script in package.json looks like this:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">"start"</span>: <span class="string">"npx webpack-dev-server --hot --progress --colors --debug --output-pathinfo"</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"start"</span>: <span class="string">"npx webpack-dev-server --hot --progress --colors --debug --output-pathinfo"</span></span><br></pre></td></tr></table></figure>
 <p>Now if start react-dev-server and go to localhost:8080 and inspect the page i can find the source map files under webpack.</p>
 <p><img src="react-sourcemap.png" alt=""></p>
 <p>I can also debug the app from vscode.</p>
 <p>I needed to install the Debug from Chrome extension and set the following launch.json.</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"version"</span>: <span class="string">"0.2.0"</span>,</div><div class="line">    <span class="attr">"configurations"</span>: [</div><div class="line">        &#123;</div><div class="line">            <span class="attr">"name"</span>: <span class="string">"Chrome"</span>,</div><div class="line">            <span class="attr">"type"</span>: <span class="string">"chrome"</span>,</div><div class="line">            <span class="attr">"request"</span>: <span class="string">"launch"</span>,</div><div class="line">            <span class="attr">"url"</span>: <span class="string">"http://localhost:8080"</span>,</div><div class="line">            <span class="attr">"webRoot"</span>: <span class="string">"$&#123;workspaceRoot&#125;/src"</span></div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"version"</span>: <span class="string">"0.2.0"</span>,</span><br><span class="line">    <span class="attr">"configurations"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"name"</span>: <span class="string">"Chrome"</span>,</span><br><span class="line">            <span class="attr">"type"</span>: <span class="string">"chrome"</span>,</span><br><span class="line">            <span class="attr">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">            <span class="attr">"url"</span>: <span class="string">"http://localhost:8080"</span>,</span><br><span class="line">            <span class="attr">"webRoot"</span>: <span class="string">"$&#123;workspaceRoot&#125;/src"</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   </div>
 </article>
 
@@ -214,7 +215,7 @@
     
     <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2017 Peter Forgacs
+    Copyright &copy; 2018 Peter Forgacs
   </div>
   <div class="footer-right">
     <nav>
