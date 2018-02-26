@@ -7,14 +7,14 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="PreludeIts not officially supported yet but you can use Windows 10 on AWS.The advantage of having a virtual machine on the cloud is that the G2 and P2 instances use GPU passtrough technology which mea">
-<meta name="keywords" content="Virtualization,AWS,S3,EC2">
+<meta name="keywords" content="AWS,S3,EC2,Virtualization">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2">
 <meta property="og:url" content="http://peterforgacs.github.io/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/index.html">
 <meta property="og:site_name" content="Peter Forgacs">
 <meta property="og:description" content="PreludeIts not officially supported yet but you can use Windows 10 on AWS.The advantage of having a virtual machine on the cloud is that the G2 and P2 instances use GPU passtrough technology which mea">
 <meta property="og:locale" content="English">
-<meta property="og:updated_time" content="2017-04-16T19:50:50.000Z">
+<meta property="og:updated_time" content="2018-02-26T19:48:24.714Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Create and Run a Custom Windows 10 Virtual Machine on Amazon AWS EC2">
 <meta name="twitter:description" content="PreludeIts not officially supported yet but you can use Windows 10 on AWS.The advantage of having a virtual machine on the cloud is that the G2 and P2 instances use GPU passtrough technology which mea">
@@ -141,6 +141,9 @@
 <p>One limitation is that it wont work trough Microsoft Remote Desktop only trough Teamviewer or similar screensharing applications.</p>
 <h2 id="Downloading-the-image"><a href="#Downloading-the-image" class="headerlink" title="Downloading the image"></a>Downloading the image</h2><p>There are limitations which version you can use on aws.<br>AWS vmimport supported versions:<br>Microsoft Windows 10 (Professional, Enterprise, Education) (US English) (64-bit only).<br>So Home version wont work.<br>Download the windows image you want.</p>
 <p>You can download the Enterprise trial <a href="https://www.microsoft.com/en-us/evalcenter/evaluate-windows-10-enterprise" target="_blank" rel="noopener">here</a>.</p>
+<p>Update: 2018 January</p>
+<p>AWS seems to filter the product names of the version of Windows being imported and blocks the vmimport of Windows 10 Enterprise Evaluation so that’s not possible to do anymore. It seems like the import of a Win10 Pro vhd based on a freely available iso that has not yet been activated is possible.</p>
+<p>You can download Windows 10 Pro unactivated <a href="https://www.microsoft.com/en-us/software-download/windows10ISO" target="_blank" rel="noopener">here</a>.</p>
 <h2 id="Creating-the-virtual-machine"><a href="#Creating-the-virtual-machine" class="headerlink" title="Creating the virtual machine"></a>Creating the virtual machine</h2><ul>
 <li>Use virtualbox to create a new virtual machine, make sure that it uses the VHD format (The OS is 20 gigabyte).</li>
 <li>Install the Windows 10 image onto it.</li>

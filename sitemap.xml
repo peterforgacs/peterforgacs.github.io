@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://peterforgacs.github.io/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/</loc>
+    
+    <lastmod>2018-02-26T19:48:24.714Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://peterforgacs.github.io/2018/02/11/Processing-images-on-the-server-and-renderer-side/</loc>
     
     <lastmod>2018-02-11T20:25:33.000Z</lastmod>
@@ -96,13 +103,6 @@
     <loc>http://peterforgacs.github.io/2017/04/17/How-WebRTC-works/</loc>
     
     <lastmod>2017-04-17T19:40:41.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://peterforgacs.github.io/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/</loc>
-    
-    <lastmod>2017-04-16T19:50:50.000Z</lastmod>
     
   </url>
   
