@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://peterforgacs.github.io/2018/05/20/Audio-normalization-with-ffmpeg/</loc>
+    
+    <lastmod>2018-05-20T13:35:08.267Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://peterforgacs.github.io/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/</loc>
     
     <lastmod>2018-02-26T19:48:24.714Z</lastmod>
