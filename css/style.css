@@ -575,8 +575,8 @@ body {
   background-repeat: no-repeat;
   background-size: 50px 50px;
   border-radius: 5px;
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
+  -webkit-filter: none;
+  filter: none;
 }
 #header #nav {
   letter-spacing: 0.01em;
