@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang=En>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="fkill-cliRepo   This terminal gui helps you kill apllications and free up ports easily.You can use an interactive gui to select the application you want to kill or provide an argument.   Previously i">
+<meta name="keywords" content="Bash,Linux,Terminal">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cool Terminal Tools">
+<meta property="og:url" content="http://peterforgacs.github.io/2018/06/24/Bash-power-tools/index.html">
+<meta property="og:site_name" content="notes.txt">
+<meta property="og:description" content="fkill-cliRepo   This terminal gui helps you kill apllications and free up ports easily.You can use an interactive gui to select the application you want to kill or provide an argument.   Previously i">
+<meta property="og:locale" content="English">
+<meta property="og:image" content="http://peterforgacs.github.io/2018/06/24/Bash-power-tools/2018-06-24-15-33-33.png">
+<meta property="og:updated_time" content="2018-06-24T13:34:23.684Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cool Terminal Tools">
+<meta name="twitter:description" content="fkill-cliRepo   This terminal gui helps you kill apllications and free up ports easily.You can use an interactive gui to select the application you want to kill or provide an argument.   Previously i">
+<meta name="twitter:image" content="http://peterforgacs.github.io/2018/06/24/Bash-power-tools/2018-06-24-15-33-33.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Cool Terminal Tools</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/peterforgacs">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a id="next-post" class="icon" href="/2018/05/21/SSL-on-Ubuntu-16-04-with-apache-2-4-8/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://peterforgacs.github.io/2018/06/24/Bash-power-tools/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://peterforgacs.github.io/2018/06/24/Bash-power-tools/&text=Cool Terminal Tools"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://peterforgacs.github.io/2018/06/24/Bash-power-tools/&title=Cool Terminal Tools"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://peterforgacs.github.io/2018/06/24/Bash-power-tools/&is_video=false&description=Cool Terminal Tools"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Cool Terminal Tools&body=Check out this article: http://peterforgacs.github.io/2018/06/24/Bash-power-tools/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://peterforgacs.github.io/2018/06/24/Bash-power-tools/&title=Cool Terminal Tools"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://peterforgacs.github.io/2018/06/24/Bash-power-tools/&title=Cool Terminal Tools"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://peterforgacs.github.io/2018/06/24/Bash-power-tools/&title=Cool Terminal Tools"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://peterforgacs.github.io/2018/06/24/Bash-power-tools/&title=Cool Terminal Tools"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://peterforgacs.github.io/2018/06/24/Bash-power-tools/&name=Cool Terminal Tools&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#fkill-cli"><span class="toc-number">1.</span> <span class="toc-text">fkill-cli</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#at"><span class="toc-number">2.</span> <span class="toc-text">at</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fzf"><span class="toc-number">3.</span> <span class="toc-text">fzf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fd"><span class="toc-number">4.</span> <span class="toc-text">fd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Previous-commands-and-arguments"><span class="toc-number">5.</span> <span class="toc-text">Previous commands and arguments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pure-bash-bible"><span class="toc-number">6.</span> <span class="toc-text">Pure bash bible</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Cool Terminal Tools
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Peter Forgacs</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-06-24T14:09:47.000Z" itemprop="datePublished">2018-06-24</time>
+        <span class="readTime"></span>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Bash/">Bash</a>, <a class="tag-link" href="/tags/Linux/">Linux</a>, <a class="tag-link" href="/tags/Terminal/">Terminal</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="fkill-cli"><a href="#fkill-cli" class="headerlink" title="fkill-cli"></a>fkill-cli</h2><p><a href="https://github.com/sindresorhus/fkill-cli/blob/master/readme.md" target="_blank" rel="noopener">Repo</a>  </p>
+<p>This terminal gui helps you kill apllications and free up ports easily.<br>You can use an interactive gui to select the application you want to kill or provide an argument.  </p>
+<p>Previously i had to use something like this to find the pid of the program that uses a port.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">port=8080</span><br><span class="line">pidofprocess=$(lsof -i:<span class="string">"<span class="variable">$port</span>"</span> -t)</span><br><span class="line"><span class="built_in">kill</span> -9 <span class="variable">$pidofprocess</span></span><br></pre></td></tr></table></figure>
+<p>Now i can use a single program to browse programs or free up ports.  </p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Kill the process that uses port 8080</span></span><br><span class="line">fkill :8080</span><br><span class="line"></span><br><span class="line"><span class="comment"># Kill spotify</span></span><br><span class="line">fkill spotify</span><br><span class="line"></span><br><span class="line"><span class="comment"># Browse programs to kill</span></span><br><span class="line">fkill</span><br></pre></td></tr></table></figure>
+<h2 id="at"><a href="#at" class="headerlink" title="at"></a>at</h2><p><a href="https://tecadmin.net/one-time-task-scheduling-using-at-commad-in-linux/" target="_blank" rel="noopener">Examples</a></p>
+<p>This program lets you time basically anything.</p>
+<p>Typically you would use it like this:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"script.sh"</span> | at now + 1 hour</span><br></pre></td></tr></table></figure>
+<p>With notify send i created a small reminder script.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"><span class="comment">#===============================================================================</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#          FILE: remind</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#         USAGE: remind "match starting" 14:00</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   DESCRIPTION: reminds you about the set topic at the set time</span></span><br><span class="line"><span class="comment">#  REQUIREMENTS: notify-send</span></span><br><span class="line"><span class="comment">#          BUGS: ---</span></span><br><span class="line"><span class="comment">#         NOTES: only supports single at parameters</span></span><br><span class="line"><span class="comment">#        AUTHOR: Peter Forgacs (), peter@sexybuddha.hu</span></span><br><span class="line"><span class="comment">#  ORGANIZATION:</span></span><br><span class="line"><span class="comment">#       CREATED: </span></span><br><span class="line"><span class="comment">#      REVISION: 1.0.0</span></span><br><span class="line"><span class="comment">#===============================================================================</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> -o nounset                              <span class="comment"># Treat unset variables as an error</span></span><br><span class="line"><span class="function"><span class="title">remind</span></span>()&#123;</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"notify-send "</span>⏰<span class="string">" "</span><span class="variable">$1</span><span class="string">" | at "</span><span class="variable">$2</span><span class="string">"</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">remind "</span><span class="variable">$1</span><span class="string">" "</span><span class="variable">$2</span><span class="string">"</span></span><br></pre></td></tr></table></figure>
+<h2 id="fzf"><a href="#fzf" class="headerlink" title="fzf"></a>fzf</h2><p><a href="https://github.com/junegunn/fzf" target="_blank" rel="noopener">Repo</a>  </p>
+<p>Command line fuzzy finder.<br>This provides a selectable, searchable list for anything.  </p>
+<p>Usage:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fd -t f | fzf</span><br></pre></td></tr></table></figure>
+<p>By default it seems verbose to type out but you can set pretty advanced default config that works most of the time.</p>
+<p>I have placed this in my fish config.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Show the contents of the files and color the output with coderay</span><br><span class="line">set -xg FZF_DEFAULT_OPTS &quot;-m --reverse --preview &apos;head -100 &#123;&#125; | coderay &#123;    &#125;&apos;&quot; </span><br><span class="line"></span><br><span class="line"># Search files when given no arguments</span><br><span class="line">set -xg FZF_DEFAULT_COMMAND &quot;find * -type f&quot;</span><br></pre></td></tr></table></figure>
+<p>You can do the same in your .bashrc.</p>
+<p>With these settings fireing up the fzf command shows this and searches downward the current directory.</p>
+<p><img src="2018-06-24-15-33-33.png" alt=""></p>
+<p>With the <strong>-m</strong> flag you can select multiple files with the <strong>tab</strong> button end send the selected paths to stdout.</p>
+<p>Some exapmle usages.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Select commands from your history to create a script</span></span><br><span class="line"><span class="built_in">history</span> | fzf &gt; script.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># Open mutliple files</span></span><br><span class="line">fd -t f | fzf | xargs vim</span><br><span class="line"></span><br><span class="line"><span class="comment"># Download some links from a file</span></span><br><span class="line">cat links.txt | fzf | xargs wget</span><br></pre></td></tr></table></figure>
+<h2 id="fd"><a href="#fd" class="headerlink" title="fd"></a>fd</h2><p><a href="https://github.com/sharkdp/fd" target="_blank" rel="noopener">Repo</a>  </p>
+<p>I think it has a much nicer syntax then the default find. It supposed to be faster as well.  </p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fd -t f 		<span class="comment"># Find files recursively</span></span><br><span class="line">fd -t f -d 0		<span class="comment"># Find files in the current directory </span></span><br><span class="line">fd -t d 		<span class="comment"># Find directories reursively</span></span><br><span class="line">fd -e .js 		<span class="comment"># Find .js files</span></span><br></pre></td></tr></table></figure>
+<h2 id="Previous-commands-and-arguments"><a href="#Previous-commands-and-arguments" class="headerlink" title="Previous commands and arguments"></a>Previous commands and arguments</h2><p><a href="https://stackoverflow.com/questions/4009412/how-to-use-arguments-from-previous-command" target="_blank" rel="noopener">Stack Overflow</a>  </p>
+<p>This is a really cool thread that shows how the reuse previous commands and arguments.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">!! 	- Previous line</span><br><span class="line">!:0	- Previous command</span><br><span class="line">!:1 	- Previous first argument</span><br><span class="line">!:2	- Previous second argument</span><br><span class="line">!:1-2	- Previous first and second argument  </span><br><span class="line">!:1-$	- Previus first to last argument</span><br></pre></td></tr></table></figure>
+<p>An other nice trick is that you can also specify a command number from history and reapply it.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!3313</span><br></pre></td></tr></table></figure>
+<h2 id="Pure-bash-bible"><a href="#Pure-bash-bible" class="headerlink" title="Pure bash bible"></a>Pure bash bible</h2><p><a href="https://github.com/dylanaraps/pure-bash-bible" target="_blank" rel="noopener">Repo</a>  </p>
+<p>This is a really cool list of functions and best practices for writing bash scripts.  </p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/peterforgacs">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#fkill-cli"><span class="toc-number">1.</span> <span class="toc-text">fkill-cli</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#at"><span class="toc-number">2.</span> <span class="toc-text">at</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fzf"><span class="toc-number">3.</span> <span class="toc-text">fzf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fd"><span class="toc-number">4.</span> <span class="toc-text">fd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Previous-commands-and-arguments"><span class="toc-number">5.</span> <span class="toc-text">Previous commands and arguments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pure-bash-bible"><span class="toc-number">6.</span> <span class="toc-text">Pure bash bible</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://peterforgacs.github.io/2018/06/24/Bash-power-tools/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://peterforgacs.github.io/2018/06/24/Bash-power-tools/&text=Cool Terminal Tools"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://peterforgacs.github.io/2018/06/24/Bash-power-tools/&title=Cool Terminal Tools"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://peterforgacs.github.io/2018/06/24/Bash-power-tools/&is_video=false&description=Cool Terminal Tools"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Cool Terminal Tools&body=Check out this article: http://peterforgacs.github.io/2018/06/24/Bash-power-tools/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://peterforgacs.github.io/2018/06/24/Bash-power-tools/&title=Cool Terminal Tools"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://peterforgacs.github.io/2018/06/24/Bash-power-tools/&title=Cool Terminal Tools"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://peterforgacs.github.io/2018/06/24/Bash-power-tools/&title=Cool Terminal Tools"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://peterforgacs.github.io/2018/06/24/Bash-power-tools/&title=Cool Terminal Tools"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://peterforgacs.github.io/2018/06/24/Bash-power-tools/&name=Cool Terminal Tools&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Peter Forgacs
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/peterforgacs">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-97407927-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'peterforgacs-github-io';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+

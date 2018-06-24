@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://peterforgacs.github.io/2018/06/24/Bash-power-tools/</loc>
+    
+    <lastmod>2018-06-24T13:34:23.684Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://peterforgacs.github.io/2018/05/21/SSL-on-Ubuntu-16-04-with-apache-2-4-8/</loc>
     
     <lastmod>2018-05-21T14:50:53.375Z</lastmod>
