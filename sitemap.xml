@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://peterforgacs.github.io/2018/07/01/Linux-Permissions/</loc>
+    
+    <lastmod>2018-06-30T21:58:56.737Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://peterforgacs.github.io/2018/06/24/Bash-power-tools/</loc>
     
-    <lastmod>2018-06-24T13:34:23.684Z</lastmod>
+    <lastmod>2018-06-24T13:34:23.685Z</lastmod>
     
   </url>
   
@@ -18,7 +25,7 @@
   <url>
     <loc>http://peterforgacs.github.io/about/index.html</loc>
     
-    <lastmod>2018-05-20T17:19:58.689Z</lastmod>
+    <lastmod>2018-05-20T17:19:58.690Z</lastmod>
     
   </url>
   
@@ -32,7 +39,7 @@
   <url>
     <loc>http://peterforgacs.github.io/2017/04/14/How-to-create-and-run-a-custom-Windows-10-virtual-machine-on-Amazon-AWS-EC2/</loc>
     
-    <lastmod>2018-02-26T19:48:24.714Z</lastmod>
+    <lastmod>2018-02-26T19:48:24.715Z</lastmod>
     
   </url>
   
@@ -46,7 +53,7 @@
   <url>
     <loc>http://peterforgacs.github.io/2017/12/09/Debugging-React-with-sourcemaps/</loc>
     
-    <lastmod>2017-12-09T19:33:20.404Z</lastmod>
+    <lastmod>2017-12-09T19:33:20.405Z</lastmod>
     
   </url>
   
@@ -102,7 +109,7 @@
   <url>
     <loc>http://peterforgacs.github.io/2017/04/25/Tmux/</loc>
     
-    <lastmod>2017-04-26T12:31:34.849Z</lastmod>
+    <lastmod>2017-04-26T12:31:34.850Z</lastmod>
     
   </url>
   
