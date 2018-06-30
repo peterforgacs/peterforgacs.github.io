@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="notes.txt">
 <meta property="og:description" content="Commands   Command Affects Description     chown files &amp;amp; directories change owner or group or default group   chmod files &amp;amp; directories change permissions   umask files &amp;amp; directories chang">
 <meta property="og:locale" content="English">
-<meta property="og:updated_time" content="2018-06-30T21:58:56.737Z">
+<meta property="og:updated_time" content="2018-06-30T22:04:31.642Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux Permissions">
 <meta name="twitter:description" content="Commands   Command Affects Description     chown files &amp;amp; directories change owner or group or default group   chmod files &amp;amp; directories change permissions   umask files &amp;amp; directories chang">
@@ -97,7 +97,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Commands"><span class="toc-number">1.</span> <span class="toc-text">Commands</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#chown"><span class="toc-number">1.1.</span> <span class="toc-text">chown</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Notations"><span class="toc-number">1.1.1.</span> <span class="toc-text">Notations</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Special-bits"><span class="toc-number">1.1.2.</span> <span class="toc-text">Special bits</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Permissions"><span class="toc-number">1.2.</span> <span class="toc-text">Permissions</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Difference-between-files-and-directories"><span class="toc-number">1.2.1.</span> <span class="toc-text">Difference between files and directories</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#umask"><span class="toc-number">1.2.2.</span> <span class="toc-text">umask</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Advanced"><span class="toc-number">2.</span> <span class="toc-text">Advanced</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Commands"><span class="toc-number">1.</span> <span class="toc-text">Commands</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Permissions"><span class="toc-number">2.</span> <span class="toc-text">Permissions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chown"><span class="toc-number">3.</span> <span class="toc-text">chown</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Special-bits"><span class="toc-number">4.</span> <span class="toc-text">Special bits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#umask"><span class="toc-number">5.</span> <span class="toc-text">umask</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Advanced"><span class="toc-number">6.</span> <span class="toc-text">Advanced</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -163,11 +163,36 @@
 </tr>
 </tbody>
 </table>
-<h3 id="chown"><a href="#chown" class="headerlink" title="chown"></a>chown</h3><h4 id="Notations"><a href="#Notations" class="headerlink" title="Notations"></a>Notations</h4><p>Octal</p>
+<h2 id="Permissions"><a href="#Permissions" class="headerlink" title="Permissions"></a>Permissions</h2><table>
+<thead>
+<tr>
+<th>x</th>
+<th>Read</th>
+<th>Write</th>
+<th>Execute</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>file</td>
+<td>can read file</td>
+<td>can write file</td>
+<td>can execute file</td>
+</tr>
+<tr>
+<td>directory</td>
+<td>can list the contents of the directory</td>
+<td>can create files inside the directory</td>
+<td>can step into the directory</td>
+</tr>
+</tbody>
+</table>
+<h2 id="chown"><a href="#chown" class="headerlink" title="chown"></a>chown</h2><p>Notations</p>
+<p>Octal</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 775 file</span><br></pre></td></tr></table></figure>
 <p>Verbose</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+rw file</span><br></pre></td></tr></table></figure>
-<h4 id="Special-bits"><a href="#Special-bits" class="headerlink" title="Special bits"></a>Special bits</h4><table>
+<h2 id="Special-bits"><a href="#Special-bits" class="headerlink" title="Special bits"></a>Special bits</h2><table>
 <thead>
 <tr>
 <th>Bit</th>
@@ -194,31 +219,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="Permissions"><a href="#Permissions" class="headerlink" title="Permissions"></a>Permissions</h3><h4 id="Difference-between-files-and-directories"><a href="#Difference-between-files-and-directories" class="headerlink" title="Difference between files and directories"></a>Difference between files and directories</h4><table>
-<thead>
-<tr>
-<th>x</th>
-<th>Read</th>
-<th>Write</th>
-<th>Execute</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>file</td>
-<td>can read file</td>
-<td>can write file</td>
-<td>can execute file</td>
-</tr>
-<tr>
-<td>directory</td>
-<td>can list the contents of the directory</td>
-<td>can create files inside the directory</td>
-<td>can step into the directory</td>
-</tr>
-</tbody>
-</table>
-<h4 id="umask"><a href="#umask" class="headerlink" title="umask"></a>umask</h4><p>Changes the default permissions for a session.</p>
+<h2 id="umask"><a href="#umask" class="headerlink" title="umask"></a>umask</h2><p>Changes the default permissions for a session.</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">umask</span> <span class="comment"># 0002</span></span><br></pre></td></tr></table></figure>
 <p>On Ubuntu 16.04.<br>The default <strong>umask</strong> is <strong>0002</strong>.<br>The default <strong>file permissions</strong> are <strong>0666</strong>.<br>The default <strong>directory permissions</strong> are <strong>0777</strong>.  </p>
 <p>The default umask is subtracted from the default octal value of the file or directory.  </p>
@@ -263,7 +264,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Commands"><span class="toc-number">1.</span> <span class="toc-text">Commands</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#chown"><span class="toc-number">1.1.</span> <span class="toc-text">chown</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Notations"><span class="toc-number">1.1.1.</span> <span class="toc-text">Notations</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Special-bits"><span class="toc-number">1.1.2.</span> <span class="toc-text">Special bits</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Permissions"><span class="toc-number">1.2.</span> <span class="toc-text">Permissions</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Difference-between-files-and-directories"><span class="toc-number">1.2.1.</span> <span class="toc-text">Difference between files and directories</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#umask"><span class="toc-number">1.2.2.</span> <span class="toc-text">umask</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Advanced"><span class="toc-number">2.</span> <span class="toc-text">Advanced</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Commands"><span class="toc-number">1.</span> <span class="toc-text">Commands</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Permissions"><span class="toc-number">2.</span> <span class="toc-text">Permissions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chown"><span class="toc-number">3.</span> <span class="toc-text">chown</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Special-bits"><span class="toc-number">4.</span> <span class="toc-text">Special bits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#umask"><span class="toc-number">5.</span> <span class="toc-text">umask</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Advanced"><span class="toc-number">6.</span> <span class="toc-text">Advanced</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
