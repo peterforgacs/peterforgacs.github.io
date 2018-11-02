@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://peterforgacs.github.io/2017/06/25/Custom-C-Exceptions-For-Beginners/</loc>
+    
+    <lastmod>2018-11-02T12:54:48.085Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://peterforgacs.github.io/2018/10/24/Tools-to-get-familiar-with-a-new-codebase/</loc>
     
     <lastmod>2018-10-28T22:43:20.280Z</lastmod>
@@ -75,13 +82,6 @@
     <loc>http://peterforgacs.github.io/2017/09/25/Playing-with-front-end-build-tools/</loc>
     
     <lastmod>2017-10-29T19:50:13.874Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://peterforgacs.github.io/2017/06/25/Custom-C-Exceptions-For-Beginners/</loc>
-    
-    <lastmod>2017-06-25T19:32:52.135Z</lastmod>
     
   </url>
   
