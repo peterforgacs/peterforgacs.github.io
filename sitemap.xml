@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://peterforgacs.github.io/2019/02/06/CSP-and-CORS/</loc>
+    
+    <lastmod>2019-02-05T22:45:10.698Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://peterforgacs.github.io/2017/06/25/Custom-C-Exceptions-For-Beginners/</loc>
     
     <lastmod>2018-11-02T12:54:48.085Z</lastmod>
