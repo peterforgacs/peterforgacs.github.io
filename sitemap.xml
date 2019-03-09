@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://peterforgacs.github.io/2019/03/02/How-caching-works-on-the-web/</loc>
+    
+    <lastmod>2019-03-09T15:20:26.358Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://peterforgacs.github.io/2019/02/06/CSP-and-CORS/</loc>
     
     <lastmod>2019-02-05T22:45:10.698Z</lastmod>
