@@ -16,7 +16,7 @@
 <meta property="og:locale" content="English">
 <meta property="og:image" content="http://peterforgacs.github.io/2019/03/02/How-caching-works-on-the-web/2019-03-09-16-04-41.png">
 <meta property="og:image" content="https://img.youtube.com/vi/cuPsdRckkF0/0.jpg">
-<meta property="og:updated_time" content="2019-03-09T15:20:26.358Z">
+<meta property="og:updated_time" content="2019-03-09T15:22:04.155Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How Caching Works on the Web">
 <meta name="twitter:description" content="There are multiple caching layers between a client and a server during a request. Levels of caching Memory cache Service Worker cache - Cache controlled by the developer HTTP cache - Automatic cache H">
@@ -152,7 +152,7 @@
 <li>Preload                 - Special preload link</li>
 </ul>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"preload"</span> <span class="attr">as</span>=<span class="string">"script"</span> <span class="attr">href</span>=<span class="string">"super-important.js"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="Service-Worker-cache"><a href="#Service-Worker-cache" class="headerlink" title="Service Worker cache"></a>Service Worker cache</h1><p>A specialized javascript worker thread. It acts as a proxy between the browser and the server.<br>Has elevated permissions to listen to and overwrite fetch requests.  </p>
+<h1 id="Service-Worker-cache"><a href="#Service-Worker-cache" class="headerlink" title="Service Worker cache"></a>Service Worker cache</h1><p>A specialized javascript worker thread. It acts as a proxy between the browser and the server.<br>Has elevated permissions to listen to and overwrite fetch requests.      </p>
 <p>The service worker itself is javascript file that has to be requested from the server so the service worker files caching must be handled with extreme caution.  </p>
 <h1 id="HTTP-cache"><a href="#HTTP-cache" class="headerlink" title="HTTP cache"></a>HTTP cache</h1><p>This is the classic browser cache.<br>Checks HTTP headers of incoming resources and caches them accordingly.<br>The http cache can be controlled trough HTTP headers.  </p>
 <p><img src="2019-03-09-16-04-41.png" alt=""></p>
